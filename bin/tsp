@@ -1,0 +1,75 @@
+#!/bin/tcsh
+
+# tsp: start project using tcsh
+#  Called from sp command
+#   tsp project name prefix init
+
+# Defaults
+set CONDA_PREFIX_SP = "virtuoso"
+
+if ( $# > 4 ) then
+    set OTHER_ARGS = $argv[5-$#argv]
+else
+    set additional_args = ""
+endif
+
+# Parse conda prefix.  prefix take precedence over name.
+if ( $3 != "None" ) then
+    set CONDA_PREFIX_SP = $3
+else
+    # Parse conda name
+    if ( $2 != "None" ) then
+        set CONDA_PREFIX_SP = $2
+    endif
+endif
+
+# Activate conda env if required
+if ( ${CONDA_PREFIX_SP} != "None" ) then
+    #if ( -d "$CONDA_PREFIX_SP" ) then
+
+        #conda activate ${sp_conda_prefix}
+        set CONDA_PREFIX_BASE = `conda info --base`
+        echo $CONDA_PREFIX_BASE
+        source ${CONDA_PREFIX_BASE}/etc/profile.d/conda.csh activate ${CONDA_PREFIX_SP}
+        echo "Activated Conda env:"
+        echo "  ${CONDA_PREFIX_SP}"
+        conda info
+     #endif
+endif
+
+# run cdsprj if the alias exists
+if ( ( $1 != "." ) && ( `where cdsprj` != "" ) ) then
+    cdsprj $1
+endif
+
+# source shell init scripts
+if ( $4 != "None" ) then
+    set SHELL_SCRIPTS_SP = `echo $4:q | sed 's/:/ /g'`
+    foreach script (${SHELL_SCRIPTS_SP}:q)
+        source $script:q
+    end
+endif
+
+# Choose the command for starting virtuoso
+if ( $?VIRT_COMMAND ) then
+    set command = ${VIRT_COMMAND}
+else if ( `where virtuoso` != "" ) then
+    set command = 'virtuoso'
+else if ( `where icfb` != "" ) then
+    set command = 'icfb'
+else
+    echo "No command for virtuoso found"
+    echo '  Set $VIRT_COMMAND to the command which starts virtuoso'
+    exit 1
+endif
+
+# Run virtuoso using the "icfb" command
+# Maybe I should check for the "virtuoso" command if "icfb" doesn't work
+if ( -r "${CONDA_PREFIX}/lib/skill/conda-virtuoso.init.il" ) then
+    echo "Starting Virtuoso with IDS SKILL env initialization script:"
+    echo "  ${CONDA_PREFIX}/lib/skill/conda-virtuoso.init.il"
+    $command -replay "${CONDA_PREFIX}/lib/skill/conda-virtuoso.init.il" additional_args
+else
+    echo "Starting Virtuoso with no IDS SKILL env initialized"
+    $command additional_args
+endif
