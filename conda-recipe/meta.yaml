@@ -1,0 +1,23 @@
+{% set name = "conda-virtuoso" %}
+{% set version = "1.0.13" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  - path: ../bin
+    folder: bin
+  - path: ../virt
+    folder: virt
+  -
+about:
+  home: https://cascode-labs.github.io/conda-virtuoso
+  license: MIT
+  summary: Easily initialize IC automation projects in Cadence Virtuoso using Conda
+  description: |
+    conda-virtuoso enables IC automation projects to be easily i
+provides the sp command that allows the 
+  dev_url: https://github.com/cascode-labs/conda-virtuoso
+  doc_url: https://cascode-labs.github.io/conda-virtuoso
+  doc_source_url: https://github.com/cascode-labs/conda-virtuoso/docs-src

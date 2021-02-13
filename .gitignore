@@ -111,6 +111,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+# Ignore conda envs, but keep yml env definition files
+envs/*
+!envs/*.yml
 
 # Spyder project settings
 .spyderproject

@@ -1,0 +1,3 @@
+unsetenv IDS_LMGR_INIT
+unsetenv IDS_DATA_REG
+unsetenv IDS_SKILL_DIR
