@@ -1,0 +1,142 @@
+name: Development Release
+# Releases to the dev channel
+
+on: [workflow_dispatch]
+
+env:
+  DEV_CHANNEL: "/prj/ids/ids-conda/channels/dev-skyworks"
+jobs:
+  build-ui:
+    runs-on: self-hosted
+    env:
+      PREFIX_BUILD: "/prj/ids/ids-conda/envs/build-datapanels"
+    steps:
+      - name: Header
+        run: |
+          echo "Building DataPanels"
+          echo "-------------------"
+          CWD=`pwd`
+          DATE=`date`
+          echo 'pwd: '
+          echo " $CWD"
+          echo "Date: $DATE"
+      - uses: actions/checkout@v2
+      - name: Create Build Env
+        run: conda env create -p ${{ env.PREFIX_BUILD }} -f envs/environment-build.yml
+      - name: Conda info
+        run: |
+          echo "CONDA INFORMATION"
+          echo "-----------------"
+          source ${{ env.PREFIX_BUILD }}/etc/profile.d/conda.sh
+          conda activate ${{ env.PREFIX_BUILD }}
+          conda info
+          conda list
+      - name: Build datapanels-ui Package
+        run: |
+          echo "BUILD UI PACKAGE"
+          echo "----------------"
+          source ${{ env.PREFIX_BUILD }}/etc/profile.d/conda.sh
+          conda activate ${{ env.PREFIX_BUILD }}
+          OUT=`conda build --output conda-recipe-ui`
+          echo "UI_PACKAGE_OUT_PATH=$OUT" >> $GITHUB_ENV
+          echo ""
+          echo "Package output path"
+          echo "-------------------"
+          echo "  $OUT"
+          echo ""
+          conda build -c defaults \
+                      -c conda-forge \
+                      -c http://idshost:5050/dev-skyworks \
+                      -c http://idshost:5050/ids-skyworks \
+                      conda-recipe-ui
+      - name: DEV RELEASE
+        run: |
+          echo "RELEASE TO DEV CHANNEL"
+          echo "----------------------"
+          source ${{ env.PREFIX_BUILD }}/etc/profile.d/conda.sh
+          conda activate ${{ env.PREFIX_BUILD }}
+          cp $UI_PACKAGE_OUT_PATH ${{ env.DEV_CHANNEL }}/linux-64/
+          conda index ${{ env.DEV_CHANNEL }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: ${{ env.UI_PACKAGE_OUT_PATH }}
+      - name: Clean Up
+        if: ${{ always() }}
+        run: |
+          if [ -d ${{ env.PREFIX_BUILD }} ]; then
+            rm -rf ${{ env.PREFIX_BUILD }}
+            echo "Deleted build env at:"
+            echo " ${{ env.PREFIX_BUILD }}"
+          fi
+          echo $OUT
+  build:
+    runs-on: self-hosted
+    env:
+      PREFIX_BUILD: "/prj/ids/ids-conda/envs/build-datapanels"
+    steps:
+      - name: Header
+        run: |
+          echo "Building DataPanels"
+          echo "-------------------"
+          CWD=`pwd`
+          DATE=`date`
+          echo 'pwd: '
+          echo " $CWD"
+          echo "Date: $DATE"
+      - uses: actions/checkout@v2
+      - name: Delete previous build env
+        if: ${{ always() }}
+        run: |
+          if [ -d ${{ env.PREFIX_BUILD }} ]; then
+            rm -rf ${{ env.PREFIX_BUILD }}
+            echo "Deleted build env at:"
+            echo " ${{ env.PREFIX_BUILD }}"
+          fi
+          echo $OUT
+      - name: Create Build Env
+        run: conda env create -p ${{ env.PREFIX_BUILD }} -f environment-build.yml
+      - name: Conda info
+        run: |
+          echo "CONDA INFORMATION"
+          echo "-----------------"
+          source ${{ env.PREFIX_BUILD }}/etc/profile.d/conda.sh
+          conda activate ${{ env.PREFIX_BUILD }}
+          conda info
+          conda list
+      - name: Build datapanels Package
+        run: |
+          echo "BUILD PACKAGE"
+          echo "-------------"
+          source ${{ env.PREFIX_BUILD }}/etc/profile.d/conda.sh
+          conda activate ${{ env.PREFIX_BUILD }}
+          OUT=`conda build --output conda-recipe`
+          echo "PACKAGE_OUT_PATH=$OUT" >> $GITHUB_ENV
+          echo "Package output path:"
+          echo " $OUT"
+          conda build -c defaults \
+                      -c conda-forge \
+                      -c http://idshost:5050/dev-skyworks \
+                      -c http://idshost:5050/ids-skyworks \
+                      conda-recipe
+      - name: DEV RELEASE
+        run: |
+          echo "RELEASE TO DEV CHANNEL"
+          echo "----------------------"
+          source ${{ env.PREFIX_BUILD }}/etc/profile.d/conda.sh
+          conda activate ${{ env.PREFIX_BUILD }}
+          cp $PACKAGE_OUT_PATH ${{ env.DEV_CHANNEL }}/linux-64/
+          conda index ${{ env.DEV_CHANNEL }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: ${{ env.PACKAGE_OUT_PATH }}
+      - name: Clean Up
+        if: ${{ always() }}
+        run: |
+          if [ -d ${{ env.PREFIX_BUILD }} ]; then
+            rm -rf ${{ env.PREFIX_BUILD }}
+            echo "Deleted build env at:"
+            echo " ${{ env.PREFIX_BUILD }}"
+          fi
+          echo $OUT

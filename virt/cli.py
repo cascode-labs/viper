@@ -2,8 +2,8 @@
 Command line interface for virt
 """
 import click
-from .docs import docs
-from .sp import start_project
+from .docs import docs as docs_internal
+from .cdslib import add_library, include_cdslib
 
 
 #@click.option("--shell", "-s", default="tcsh", type=click.Choice(['tcsh', 'sh'], case_sensitive=False),
@@ -18,7 +18,7 @@ def virt():
 
 @virt.command()
 def docs():
-
+    docs_internal()
 
 @virt.group()
 def cdslib():
@@ -26,24 +26,25 @@ def cdslib():
     pass
 
 @cdslib.command()
+@click.argument("cds_path")
+@click.argument("library_name")
+@click.argument("library_path")
 def add():
     """
     Add a library
     """
-    pass
+    add_library(cds_path,library_name,library_path)
 
 @cdslib.command()
-def remove():
+@click.argument("cds_path")
+@click.argument("include_file_path")
+@click.option('-s','--soft')
+def include():
     """
-    virt cdslib remove LIB PATH
-    Remove a library
+    Include another cds.lib file in the current one.
     :return:
     """
-    pass
-
-@cdslib.command()
-def search():
-    pass
+    include_cdslib(cds_path,include_file_path,soft)
 
 if __name__ == '__main__':
     virt(auto_envvar_prefix='VIRT')

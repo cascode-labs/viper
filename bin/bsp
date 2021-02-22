@@ -16,4 +16,5 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # source the ssp command contained in the same folder
+# shellcheck disable=SC1090
 source "${DIR}/ssp"

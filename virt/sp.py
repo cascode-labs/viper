@@ -69,6 +69,8 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
         return scripts_out
 
     init = process_file_paths(init)
+    if init is None:
+        init = "None"
 
     skill = process_file_paths(skill)
     if skill is not None:
@@ -83,6 +85,7 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
         "bash": "ssp",
     }
     # Run command
+
     subprocess.run([commands[shell], str(project), str(name), str(prefix), init], env=os.environ)
 
 

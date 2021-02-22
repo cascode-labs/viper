@@ -15,4 +15,3 @@ Command Line Interfaces
       Run "sp -h"
   
 * virt: Virtuoso command line utilities
-

@@ -1,0 +1,10 @@
+name: test-virt
+channels:
+  - defaults
+  - conda-forge
+  - http://idshost:5050/dev-skyworks
+  - http://idshost:5050/ids-skyworks
+dependencies:
+  - conda-virtuoso
+  - conda=4.9.2
+  - IDS-skill
