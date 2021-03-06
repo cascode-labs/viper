@@ -23,7 +23,7 @@ elif [ ! "${CHANNEL_PATH}" ]; then
 fi
 
 # Basic Information
-VER_INFO=$(cat ./VERSION)
+VER_INFO=$(cat ./version)
 PWD=$(pwd)
 DATE=$(date)
 echo "Building $PROJECT"
