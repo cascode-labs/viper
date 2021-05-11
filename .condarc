@@ -1,0 +1,7 @@
+channels:
+  - defaults
+  - conda-forge
+  - http://idshost:5050/ids-skyworks
+# Package Cache
+pkgs_dirs:
+  - /tmp/virt/conda-pkgs

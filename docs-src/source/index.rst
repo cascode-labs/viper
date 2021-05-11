@@ -10,6 +10,7 @@ conda-virtuoso Documentation
    :maxdepth: 2
    :caption: Contents:
 
+   conda.rst
 
 
 Indices and tables
