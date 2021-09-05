@@ -6,7 +6,7 @@ using [Conda](https://docs.conda.io/projects/conda/en/latest/index.html)
 
 It 
 
-It also provides clear documentation on how
+It also provides clear documentation on how to build a Conda package containing SKILL.
 
 Command Line Interfaces
 ----------------------
