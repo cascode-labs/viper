@@ -1,4 +1,4 @@
-name: Development Release
+name: Build
 # Releases to the dev channel
 
 on: [workflow_dispatch]
@@ -7,9 +7,7 @@ env:
   DEV_CHANNEL: "/prj/ids/ids-conda/channels/dev-skyworks"
 jobs:
   build:
-    runs-on: self-hosted
-    env:
-      PREFIX_BUILD: "/prj/ids/ids-conda/envs/build-datapanels"
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build Conda Package
