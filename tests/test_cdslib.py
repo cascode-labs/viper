@@ -3,6 +3,8 @@ import tempfile
 import os
 from viper.cdslib import include_cdslib
 
+
+# noinspection SpellCheckingInspection
 class Cdslib(unittest.TestCase):
     def setUp(self):
         self.test_path = tempfile.mkdtemp(prefix="virt_cdslib_")
