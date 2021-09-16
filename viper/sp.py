@@ -2,7 +2,7 @@
 Start project (sp)
 """
 import os
-# import importlib.util
+import platform
 import click
 import subprocess
 
@@ -31,18 +31,9 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
     :return:
     """
 
-    # Execute python initialization scripts
-    # for idx, path in enumerate(pyinit.split(":")):
-    #     if os.path.exists(path)
-    #         spec = importlib.util.spec_from_file_location("init_script_module_" + str(idx), path)
-    #         module = importlib.util.module_from_spec(spec)
-    #         spec.loader.exec_module(module)
-    #         # Seems like I'll need to hanle the case where this is ran a second time.
-    #         $ I'd need to change the idx to start after the existing number.
-
     # Set dev env variable when dev is set
     if dev:
-        os.environ["VIRT_DEV"] = "TRUE"
+        os.environ["VIPER_DEV"] = "TRUE"
 
     # Parse shell and skill script initialization paths
     def process_file_paths(scripts):
@@ -66,7 +57,7 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
 
     skill = process_file_paths(skill)
     if skill is not None:
-        os.environ["VIRT_SP_SKILL_INIT"] = skill
+        os.environ["VIPER_SP_SKILL_INIT"] = skill
 
     if shell is None:
         shell = default_shell()
@@ -85,15 +76,20 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
 
 def default_shell():
     """selects the default shell for sp"""
-    login_shell = os.path.basename(os.environ["SHELL"])
-    if login_shell in SHELL_OPTIONS:
-        default = login_shell
-    elif os.environ["VIRT_SP_SHELL_DEFAULT"] is not None:
-        default = os.environ["VIRT_SP_SHELL_DEFAULT"]
-    else:
-        default = "tcsh"
-    return default
+    if platform.system() == "Linux":
+        login_shell = os.path.basename(os.environ["SHELL"])
+        if login_shell in SHELL_OPTIONS:
+            default = login_shell
+        elif os.environ["VIPER_SP_SHELL_DEFAULT"] is not None:
+            default = os.environ["VIPER_SP_SHELL_DEFAULT"]
+        else:
+            default = "tcsh"
 
+    elif platform.system() == "Windows":
+        default = "cmd"
+    else:
+        raise RuntimeError("Unsupported platform: %s", platform.system())
+    return default
 
 # Command Line Interface
 @click.command()

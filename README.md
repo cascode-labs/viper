@@ -14,7 +14,7 @@ Command Line Interfaces
 ----------------------
 
 * sp: "start project" Opens a project in virtuoso.
-      Run "sp -h" for more details
+      Run "sp --help" for more details
   
 * virt: Virtuoso command line utilities
-      Run "virt -h" for more details
+      Run "virt --help" for more details

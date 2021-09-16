@@ -4,6 +4,6 @@ from viper.sp import sp
 
 def test_sp_cli_help():
     runner = CliRunner()
-    result = runner.invoke(sp, ['-h'])
+    result = runner.invoke(sp, ['--help'])
     assert result.exit_code == 0
     assert "Start Project" in result.output
