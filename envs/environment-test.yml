@@ -1,4 +1,4 @@
-name: test-virt
+name: test-viper
 channels:
   - defaults
   - conda-forge

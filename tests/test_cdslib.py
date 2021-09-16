@@ -1,7 +1,7 @@
 import unittest
 import tempfile
 import os
-from virt.cdslib import include_cdslib
+from viper.cdslib import include_cdslib
 
 class Cdslib(unittest.TestCase):
     def setUp(self):
@@ -13,6 +13,7 @@ class Cdslib(unittest.TestCase):
 
     def test_include_existing(self):
         self.assertEqual(True, False)
+
 
 if __name__ == '__main__':
     unittest.main()

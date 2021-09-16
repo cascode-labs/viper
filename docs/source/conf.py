@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'conda-virtuoso'
+project = 'viper'
 copyright = '2021, Curtis Mayberry'
 author = 'Curtis Mayberry'
 

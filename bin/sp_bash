@@ -2,7 +2,7 @@
 
 # tsp: start project using bash
 #  Called from sp command
-#  tsp project name prefix shellinit pyinit
+#  tsp project name prefix shell-init py-init
 
 # TODO: Implement a sh version of sp
 

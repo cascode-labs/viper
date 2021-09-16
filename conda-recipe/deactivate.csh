@@ -1,3 +1,3 @@
-unsetenv IDS_LMGR_INIT
-unsetenv IDS_DATA_REG
-unsetenv IDS_SKILL_DIR
+unsetenv VIPER_LMGR_INIT
+unsetenv VIPER_DATA_REG
+unsetenv VIPER_SKILL_DIR

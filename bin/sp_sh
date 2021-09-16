@@ -2,7 +2,7 @@
 
 # ssp: start project using sh
 #  Called from sp command
-#  tsp project name prefix shellinit pyinit
+#  ssp project name prefix shell-init py-init
 
 # Defaults
 set CONDA_PREFIX_SP = "virtuoso"

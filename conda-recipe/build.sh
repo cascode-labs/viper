@@ -1,6 +1,6 @@
 # Add .SKILL library
 mkdir -p "${PREFIX}/lib/skill"
-for item in "conda-virtuoso.lmgrinit" "README.md"; do
+for item in "viper.lmgrinit" "README.md"; do
 	cp -rf "${RECIPE_DIR}/../${item}" \
        "${PREFIX}/lib/skill"
 done
@@ -13,11 +13,11 @@ for item in "tsp" "bsp" "ssp"; do
 done
 
 # skill init script
-cp -f "${RECIPE_DIR}/../conda-virtuoso.init.il" \
-       "${PREFIX}/lib/skill/conda-virtuoso.init.ils"
+cp -f "${RECIPE_DIR}/../viper.init.il" \
+       "${PREFIX}/lib/skill/viper.init.ils"
 # Library Manager init script
-cp -f "${RECIPE_DIR}/../conda-virtuoso.lmgrinit" \
-       "${PREFIX}/lib/skill/conda-virtuoso.lmgrinit"
+cp -f "${RECIPE_DIR}/../viper.lmgrinit" \
+       "${PREFIX}/lib/skill/viper.lmgrinit"
 
 # Copy the [de]activate scripts to $PREFIX/etc/conda/[de]activate.d.
 # This will allow them to be run on environment activation.

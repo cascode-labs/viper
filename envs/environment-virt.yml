@@ -1,4 +1,4 @@
-name: virt
+name: viper
 channels:
   - defaults
   - conda-forge

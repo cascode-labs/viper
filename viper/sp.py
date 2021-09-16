@@ -10,28 +10,20 @@ SHELL_OPTIONS = ['tcsh', 'sh', 'bash']
 # ROOT_DEFAULT = "/prj"
 
 
-def default_shell():
-    """selects the default shell for sp"""
-    login_shell = os.path.basename(os.environ["SHELL"])
-    if login_shell in SHELL_OPTIONS:
-        default = login_shell
-    elif os.environ["VIRT_SP_SHELL_DEFAULT"] is not None:
-        default = os.environ["VIRT_SP_SHELL_DEFAULT"]
-    else:
-        default = "tcsh"
-    return default
-
-
 def start_project(project, dev=False, name=None, prefix=False, shell=None, init=None, skill=None):
     """
-    Start project ("sp" command)
+    Start project ("sp" CLI command)
 
     :param project: The name of the project to open
     :param dev: A flag for toggling the development mode
-    :param name: Conda name to activate. prefix and name are mutually exclusive options.
-    :param prefix: Conda Prefix to activate. prefix and name are mutually exclusive options.
-    :param shell: The type of shell script specified with the --init or -i options
-    :param init: Paths to one or more shell initialization scripts which will be sourced, each delimited by a ":",
+    :param name: Conda environment name to activate.
+                 prefix and name are mutually exclusive options.
+    :param prefix: Conda prefix to activate.
+                   prefix and name are mutually exclusive options.
+    :param shell: The type of shell script specified with the --init or -i
+                  options
+    :param init: Paths to one or more shell initialization scripts which will
+                 be sourced, each delimited by a ":",
                  this option can also be specified multiple times to add additional scripts.
     :param skill: Paths to one or more SKILL initialization scripts which will be loaded using loadi,
                    each delimited by a \":\", this option can also be specified multiple times to add
@@ -80,18 +72,30 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
         shell = default_shell()
 
     commands = {
-        "tcsh": "tsp",
-        "sh":   "ssp",
-        "bash": "ssp",
+        "tcsh": "sp_tcsh",
+        "sh":   "sp_sh",
+        "bash": "sp_bash",
     }
     # Run command
 
-    subprocess.run([commands[shell], str(project), str(name), str(prefix), init], env=os.environ)
+    subprocess.run([commands[shell], str(project),
+                    str(name), str(prefix), init],
+                   env=os.environ)
 
 
-##########################
-# Command Line Interface #
-##########################
+def default_shell():
+    """selects the default shell for sp"""
+    login_shell = os.path.basename(os.environ["SHELL"])
+    if login_shell in SHELL_OPTIONS:
+        default = login_shell
+    elif os.environ["VIRT_SP_SHELL_DEFAULT"] is not None:
+        default = os.environ["VIRT_SP_SHELL_DEFAULT"]
+    else:
+        default = "tcsh"
+    return default
+
+
+# Command Line Interface
 @click.command()
 @click.option("--dev/--nodev", "-d/-o", default=False, is_flag=True,
               help="A flag for toggling the development mode")
@@ -104,11 +108,6 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
 @click.option("--init", "-i", default=None, type=str, multiple=True,
               help="Paths to one or more shell initialization scripts which will be sourced, each delimited by a \":\","
                    " this option can also be specified multiple times to add additional scripts.")
-# @click.option("--root", "-r", default=ROOT_DEFAULT, type=click.Path(exists=True, file_okay=False, dir_okay=True,
-#                                                               allow_dash=False, readable=True),
-#               help="Path to the project root directory containing all projects.  Defaults to \"/prj\"")
-# @click.option("--pyinit", "--py", "-y", default=None, type=str,
-#               help="Paths to one or more shell initialization scripts which will be sourced, each delimited by a :")
 @click.option("--skill", "-k", "-replay", default=None, type=str, multiple=True,
               help="Paths to one or more SKILL initialization scripts which will be loaded using loadi, "
                    "each delimited by a \":\", this option can also be specified multiple times to add "
@@ -125,4 +124,4 @@ def sp(project, dev, name, prefix, shell, init, skill):
 
 
 if __name__ == '__main__':
-    sp(auto_envvar_prefix='VIRT')
+    sp(auto_envvar_prefix='VIPER')

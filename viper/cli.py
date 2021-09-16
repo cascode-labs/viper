@@ -1,13 +1,10 @@
 """
-Command line interface for virt
+Command line interface for viper
 """
 import click
 from .docs import docs as docs_internal
 from .cdslib import add_library, include_cdslib
 
-
-#@click.option("--shell", "-s", default="tcsh", type=click.Choice(['tcsh', 'sh'], case_sensitive=False),
-#              help="The shell in which to run virtuoso, either tcsh or sh.")
 
 @click.group()
 def virt():
@@ -33,7 +30,7 @@ def add():
     """
     Add a library
     """
-    add_library(cds_path,library_name,library_path)
+    add_library(cds_path, library_name, library_path)
 
 @cdslib.command()
 @click.argument("cds_path")
@@ -44,7 +41,7 @@ def include():
     Include another cds.lib file in the current one.
     :return:
     """
-    include_cdslib(cds_path,include_file_path,soft)
+    include_cdslib(cds_path, include_file_path, soft)
 
 if __name__ == '__main__':
     virt(auto_envvar_prefix='VIRT')

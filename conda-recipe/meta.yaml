@@ -1,5 +1,5 @@
-{% set name = "conda-virtuoso" %}
-{% set version = "1.0.14" %}
+{% set name = "viper" %}
+{% set version = "0.1.14" %}
 
 package:
   name: "{{ name|lower }}"
@@ -8,10 +8,10 @@ package:
 source:
   - path: ../bin
     folder: bin
-  - path: ../virt
-    folder: virt
-  - path: ../conda-virtuoso.init.il
-  - path: ../conda-virtuoso.lmgrinit
+  - path: ../viper
+    folder: viper
+  - path: ../viper.init.il
+  - path: ../viper.lmgrinit
   - path: ../README.md
   - path: ../conda-recipe
     folder: conda-recipe
@@ -30,23 +30,23 @@ requirements:
 build:
   number: 1
   entry_points:
-    - sp=virt.sp:sp
-    - virt=virt.cli:virt
+    - sp=viper.sp:sp
+    - viper=viper.cli:viper
 
 test:
   imports:
-    - virt
+    - viper
   commands:
     - sp --help
-    - virt --help
+    - viper --help
 
 about:
-  home: https://cascode-labs.github.io/conda-virtuoso
+  home: https://cascode-labs.github.io/viper
   license: MIT
   summary: Easily initialize IC automation projects in Cadence Virtuoso using Conda
   description: |
-    conda-virtuoso enables IC automation projects to be easily initialized.
+    viper enables IC automation projects to be easily initialized.
     The sp command starts virtuoso in the specified conda environment.
-  dev_url: https://github.com/cascode-labs/conda-virtuoso
-  doc_url: https://cascode-labs.github.io/conda-virtuoso
-  doc_source_url: https://github.com/cascode-labs/conda-virtuoso/docs-src
+  dev_url: https://github.com/cascode-labs/viper
+  doc_url: https://cascode-labs.github.io/viper
+  doc_source_url: https://github.com/cascode-labs/viper/docs

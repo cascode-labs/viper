@@ -1,8 +1,8 @@
-IDS_SKILL_DIR="$CONDA_PREFIX/lib/skill"
+VIPER_SKILL_DIR="$CONDA_PREFIX/lib/skill"
 
 # Library Customization Script folder
-export IDS_LMGR_INIT="$IDS_SKILL_DIR"
+export VIPER_LMGR_INIT="$VIPER_SKILL_DIR"
 
 # Data registry (data.reg) customization
-export IDS_DATA_REG="$IDS_SKILL_DIR"
+export VIPER_DATA_REG="$VIPER_SKILL_DIR"
 

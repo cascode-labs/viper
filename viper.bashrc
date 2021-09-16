@@ -1,5 +1,5 @@
 #!/bin/bash
-# virt Bash initialization
+# viper Bash initialization
 gp() { /rds/prod/custom/cad/bin/grep_prj $1; }
 alias dev="conda activate dev"
 cds() { cd /prj/crdc_dev/${USER}/$@; }
