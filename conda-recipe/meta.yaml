@@ -17,8 +17,8 @@ source:
     folder: conda-recipe
   - path: ../conda-recipe
   - path: ../setup.py
-  - path: ../docs-src
-    folder: docs-src
+  - path: ../docs
+    folder: docs
 requirements:
   build:
     - python=3.7
