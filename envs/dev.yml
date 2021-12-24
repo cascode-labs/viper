@@ -14,3 +14,4 @@ dependencies:
   - setuptools=51.0.*
   - python=3.7
   - click=7.1.*
+  - pip

@@ -6,7 +6,7 @@ import platform
 import click
 import subprocess
 
-SHELL_OPTIONS = ['tcsh', 'sh', 'bash']
+SHELL_OPTIONS = ['tcsh', 'bash']
 # ROOT_DEFAULT = "/prj"
 
 
@@ -64,7 +64,6 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
 
     commands = {
         "tcsh": "sp_tcsh",
-        "sh":   "sp_sh",
         "bash": "sp_bash",
     }
     # Run command
