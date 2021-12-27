@@ -7,22 +7,17 @@ from .cdslib import add_library, include_cdslib
 
 
 @click.group()
-def virt():
+def viper():
     """
-    Cadence virtuoso command-line utilities
+    Viper CLI
     """
     pass
 
-@virt.command()
+@viper.command()
 def docs():
     docs_internal()
 
-@virt.group()
-def cdslib():
-    """Edit a *.cdslib file"""
-    pass
-
-@cdslib.command()
+@viper.command()
 @click.argument("cds_path")
 @click.argument("library_name")
 @click.argument("library_path")
@@ -32,16 +27,6 @@ def add():
     """
     add_library(cds_path, library_name, library_path)
 
-@cdslib.command()
-@click.argument("cds_path")
-@click.argument("include_file_path")
-@click.option('-s','--soft')
-def include():
-    """
-    Include another cds.lib file in the current one.
-    :return:
-    """
-    include_cdslib(cds_path, include_file_path, soft)
 
 if __name__ == '__main__':
-    virt(auto_envvar_prefix='VIRT')
+    viper(auto_envvar_prefix='VIPER')

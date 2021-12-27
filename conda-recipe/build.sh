@@ -1,4 +1,4 @@
-# Add .SKILL library
+# Add SKILL library
 mkdir -p "${PREFIX}/lib/skill"
 for item in "viper.lmgrinit" "README.md"; do
 	cp -rf "${RECIPE_DIR}/../${item}" \
@@ -28,4 +28,6 @@ for CHANGE in "activate" "deactivate"; do
     cp "${RECIPE_DIR}/${CHANGE}.csh" \
        "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.csh"
 done
-$PYTHON setup.py install
+
+# Install Python package
+python -m pip install --no-deps .

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Utilities for handling the IDS conda environment
+Utilities for handling the viper conda environment
 """
 import os
 import shutil
@@ -51,25 +51,7 @@ def update_env(env_prefix: os.PathLike, env_yml_path: os.PathLike) -> bool:
     Returns:
         True for success, False otherwise.
     """
-
-
-def update_envs_climate(climate_path: os.PathLike, env_names: Union[str, List[str]],
-                        env_yml_paths=None) -> bool:
-    """ Update specified environments in a conda climate.
-
-    A climate is a directory containing a set of conda environments.
-
-    Args:
-        climate_path: Path to the conda climate
-        env_names: A s
-        env_yml_paths:
-
-    Returns:
-
-    """
-
-
-
+    pass
 
 
 if __name__ == "__main__":

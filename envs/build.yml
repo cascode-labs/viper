@@ -1,4 +1,4 @@
-name: build-viper
+name: viper-build
 channels:
   - defaults
   - conda-forge
