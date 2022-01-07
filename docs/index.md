@@ -8,9 +8,11 @@ It supports both open source tools and [Cadence Virtuoso](https://www.cadence.co
 
 ## Environment Manager
 
-It has a circuit design package and environment manager.
-It is built on top of [Conda](https://docs.conda.io/projects/conda/en/latest/index.html) 
-and supports SKILL code.  
+It has a circuit design package and environment manager that makes it easy
+to install packages to extend its capabilities.
+
+[viper-forge](http://www.cascode-labs.org/viper-forge/) is developing a set of
+viper packages.
 
 ## Cadence Virtuoso Support
 
@@ -20,8 +22,8 @@ and supports SKILL code.
 
 ## Command Line Interfaces
 
-* sp: "start project" Opens a project in virtuoso.
+- sp: "start project" Opens a project in virtuoso.
       Run "sp --help" for more details
   
-* virt: Virtuoso command line utilities
+- virt: Virtuoso command line utilities
       Run "virt --help" for more details
