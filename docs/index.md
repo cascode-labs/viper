@@ -2,9 +2,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Viper is a integrated circuit design environment.  It supports design workflows with both free open-source and proprietary commercial software tools.
+Viper is an open integrated circuit design environment.  It supports design
+workflows with both free and proprietary software tools.  It also natively
+supports software-based circuit design flows.
 
-It supports both open source tools and [Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html).  
+It supports both open source tools and
+[Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html)
+with the [Virtue]() package.  
 
 ## Environment Manager
 
