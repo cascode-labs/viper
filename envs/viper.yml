@@ -1,0 +1,12 @@
+# Development Environment
+name: viper
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - conda
+  - mamba
+  - python=3.9
+  - git
+  - xonsh
+  - pip
