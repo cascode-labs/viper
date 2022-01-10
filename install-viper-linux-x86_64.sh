@@ -2,27 +2,29 @@
 help() {
   echo ""
   echo "VIPER INSTALLER"
-  echo " install_viper.sh [options] containing_path"
-  echo "  Creates a viper site environment at containing_path"
+  echo " install_viper.sh [options] site_path"
+  echo "  Creates a viper site environment at site_path"
   echo ""
   echo " Options:"
-  echo "   -h --help: Display this help message.It is also "
-  echo "      displayed when called without any arguments"
+  echo "   -d --download: Path to a 'download' folder containing the "
+  echo "      Mambaforge install script and viper.yml file"
   echo "   -f --file: A conda environment yaml file defining a custom set of"
   echo "      packages to install into the user's terminal viper environment"
+  echo "   -h --help: Display this help message.It is also "
+  echo "      displayed when called without any arguments"
   echo ""
   exit 0
 }
 
 # constants
 MINIFORGE_URL_ROOT=\
-"https://github.com/conda-forge/miniforge/releases/latest/download/"
+"https://github.com/conda-forge/miniforge/releases/latest/download"
 MAMBAFORGE_INSTALL_FILE="Mambaforge-Linux-x86_64.sh"
 MAMBAFORGE_URL="${MINIFORGE_URL_ROOT}/${MAMBAFORGE_INSTALL_FILE}"
-MAMBAFORGE_HASH_FILE="${MAMBAFORGE_INSTALL_FILE}.sha256"
-MAMBAFORGE_URL_HASH="${MINIFORGE_URL_ROOT}/${MAMBAFORGE_HASH_FILE}"
+# MAMBAFORGE_HASH_FILE="${MAMBAFORGE_INSTALL_FILE}.sha256"
+# MAMBAFORGE_URL_HASH="${MINIFORGE_URL_ROOT}/${MAMBAFORGE_HASH_FILE}"
 VIPER_URL_ROOT=\
-"https://github.com/cascode-labs/viper/releases/latest/download/"
+"https://github.com/cascode-labs/viper/releases/latest/download"
 VIPER_ENV_YML_FILE="viper.yml"
 VIPER_ENV_YML_URL="${VIPER_URL_ROOT}/${VIPER_ENV_YML_FILE}"
 
@@ -51,27 +53,31 @@ while true ; do
        usage ; exit 2 ;;
   esac
 done
-CONTAINING_PATH="$1"
+SITE_PATH="$1"
 
 
 
 # Create folder structure
-ENVS_PATH="${CONTAINING_PATH}/envs"
-PRJS_PATH="${CONTAINING_PATH}/prjs"
+ENVS_PATH="${SITE_PATH}/envs"
+PRJS_PATH="${SITE_PATH}/prjs"
 TMP_PATH="/tmp/viper"
 TMP_DOWNLOADS_PATH="${TMP_PATH}/downloads"
 VIPER_PATHS=("${ENVS_PATH}" "${PRJS_PATH}" "${TMP_PATH}" \
              "${TMP_DOWNLOADS_PATH}")
 for viper_folder in "${VIPER_PATHS[@]}"; do
-  mkdir "${viper_folder}"
+  mkdir -p "${viper_folder}"
 done
 # Download and install Mambaforge
-wget "${MAMBAFORGE_URL}" -P "${TMP_DOWNLOADS_PATH}"
-wget "${MAMBAFORGE_URL_HASH}" -P "${TMP_DOWNLOADS_PATH}"
+wget -O "${MAMBAFORGE_INSTALL_FILE}" \
+     -P "${TMP_DOWNLOADS_PATH}" \
+     "${MAMBAFORGE_URL}"
+# wget -O "${MAMBAFORGE_HASH_FILE}" \
+#      -P "${TMP_DOWNLOADS_PATH}" \
+#      "${MAMBAFORGE_URL_HASH}"
 BASE_PREFIX="${ENVS_PATH}/${BASE_ENV_NAME}"
 INSTALLER_PATH="${TMP_DOWNLOADS_PATH}/${MAMBAFORGE_INSTALL_FILE}"
-INSTALLER_HASH_PATH="${TMP_DOWNLOADS_PATH}/${MAMBAFORGE_HASH_FILE}"
-sha256sum --check "$INSTALLER_HASH_PATH" "${INSTALLER_PATH}"
+# INSTALLER_HASH_PATH="${TMP_DOWNLOADS_PATH}/${MAMBAFORGE_HASH_FILE}"
+# sha256sum --check "$INSTALLER_HASH_PATH" "${INSTALLER_PATH}"
 bash "${INSTALLER_PATH}" \
       -b -p "${BASE_PREFIX}"
 
@@ -81,8 +87,10 @@ echo "  - ${ENVS_PATH}" >> "${BASE_PREFIX}/.condarc"
 
 # Create user terminal environment
 # shellcheck disable=SC1091
+source "${BASE_PREFIX}/etc/profile.d/conda.sh"
+# shellcheck disable=SC1091
 source "${BASE_PREFIX}/etc/profile.d/mamba.sh"
-if [ -n "${USER_ENV_YML_PATH}" ]; then
+if [ -z "${USER_ENV_YML_PATH}" ]; then
   wget "${VIPER_ENV_YML_URL}" -P "${TMP_DOWNLOADS_PATH}"
   USER_ENV_YML_PATH="${TMP_DOWNLOADS_PATH}/${VIPER_ENV_YML_FILE}"
 fi
