@@ -5,7 +5,7 @@ from docutils.parsers.rst import Directive
 class Library(Directive):
 
     def run(self):
-        # Add title based on the dlibrary directory name
+        # Add title based on the library directory name
         self.doc.title(os.path.basename(self.library_path))  # The title is taken from the directory name of the library
         library_node = nodes.title("")
         return [library_node]
