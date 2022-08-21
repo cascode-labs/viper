@@ -3,8 +3,10 @@ Start project (sp)
 """
 import os
 import platform
-import click
 import subprocess
+from pathlib import Path
+import click
+import toml
 
 SHELL_OPTIONS = ['tcsh', 'bash']
 # ROOT_DEFAULT = "/prj"
@@ -50,6 +52,9 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
         else:
             scripts_out = None
         return scripts_out
+    viper_config_path = os.environ["VIPER_CONFIG_PATH"]
+    config=toml.load(viper_config_path)
+    projects_root = config["environment"]["projects_path"]
 
     init = process_file_paths(init)
     if init is None:
@@ -89,6 +94,11 @@ def default_shell():
     else:
         raise RuntimeError("Unsupported platform: %s", platform.system())
     return default
+
+def read_config(site_file: Path):
+    config=toml.load(site_file)
+
+    config["environment"]["projects_path"]
 
 # Command Line Interface
 @click.command()

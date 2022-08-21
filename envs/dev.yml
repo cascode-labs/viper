@@ -4,14 +4,17 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - conda=4.10.*
+  - conda=4.13
+  - mamba=0.24
   # Build
-  - sphinx=4.2.*
-  - sphinx_rtd_theme=0.5.*
-  - xonsh=0.10.*
+  - conda-build=3.21
+  - boa = 0.11
+  - sphinx=4.2
+  - sphinx_rtd_theme=0.5
+  - xonsh=0.10
   - pytest
   - python=3.7
-  - setuptools=51.0.*
+  - setuptools=51.0
   - python=3.7
-  - click=7.1.*
+  - click=7.1
   - pip
