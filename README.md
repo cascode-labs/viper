@@ -1,15 +1,46 @@
-# VIPER
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="docs/logo/8-06.jpg" alt="Logo" width="120">
+  </a>
+
+  <h2 align="center">Viper</h2>
+
+  <p align="center">
+    An open-source integrated circuit design environment
+    <br/>
+    Still under development and not ready for regular usage
+    <br />
+    <a href="https://www.cascode-labs.org/viper/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/cascode-labs/viper/discussions">Discuss</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p>
+</div>
+
+## Overview
 
 Viper is an open integrated circuit design environment.  It supports design
 workflows with both free and proprietary software tools.  It also natively
-supports software-based circuit design flows in addition to 
+supports software-based circuit design flows in addition to
 traditional flows.
 
 It supports both open source tools and
 [Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html)
 with the [Virtue](http://www.cascode-labs.org/virtue/) package.  
+
+## Project Manager GUI
+
+[![Project Manager GUI](docs/imgs/viper_project_manager_mockup.png)](https://github.com/cascode-labs/viper/issues/5)
+
+See [issue #5](https://github.com/cascode-labs/viper/issues/5)
 
 ## Environment Manager
 
