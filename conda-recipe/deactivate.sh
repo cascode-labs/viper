@@ -1,3 +1,0 @@
-unset VIPER_LMGR_INIT
-unset VIPER_DATA_REG
-unset VIPER_SKILL_DIR
