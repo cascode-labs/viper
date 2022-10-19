@@ -1,0 +1,40 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "viper"
+authors = [
+    {name = "Curtis Mayberry", email = "Curtisma3@gmail.com"},
+]
+readme = "README.md"
+classifiers = [
+    "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 2 - Pre-Alpha",
+    "Operating System :: POSIX",
+    "Environment :: Console",
+    "Programming Language :: Python :: 3.9",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: End Users/Desktop",
+    "Typing :: Typed",
+    "Natural Language :: English",
+]
+requires-python = ">=3.8"
+dynamic = ["version", "description"]
+
+[project.urls]
+Documentation = "http://www.cascode-labs.org/viper/"
+Source = "https://github.com/cascode-labs/viper"
+
+[project.scripts]
+viper="viper.cli:cli"
+
+[tool.flit.module]
+name = "viper"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]

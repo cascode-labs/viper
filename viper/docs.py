@@ -3,15 +3,18 @@ Documentation functions
 """
 import subprocess
 import os
+from viper.api import read_config
 
+def docs_url() -> str:
+    return read_config("docs", "viper")
 
-def docs():
+def open_docs_in_firefox():
     """
     Opens the documentation in firefox
     :return:
     """
-    subprocess.run(["firefox" "${PREFIX}/docs/skill/"], env=os.environ)
+    subprocess.run(["firefox", docs_url()], env=os.environ)
 
 
 if __name__ == "__main__":
-    docs()
+    open_docs_in_firefox()
