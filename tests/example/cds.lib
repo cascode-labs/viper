@@ -1,6 +1,0 @@
-# User cds.lib for User mayberc and Project tsmc_soi011_devIP_Al3_CR
-
-DEFINE test_lib1  /path/to/test_lib1
-
-INCLUDE $VIRT_TEST_DIR/example2/cds.lib
-DEFINE test_lib2  /path/to/test_lib2
