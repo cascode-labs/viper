@@ -8,7 +8,7 @@ class Conda(BaseModel):
     channels: Optional[Dict[str,Union[Path, AnyHttpUrl, str]]]
 
 class ViperConfig(BaseSettings):
-    IDS_CONFIG_PATH: FilePath
+    VIPER_CONFIG_PATH: FilePath
     conda: Optional[Conda]
     default_project_root: DirectoryPath
     docs: Dict[str, str]

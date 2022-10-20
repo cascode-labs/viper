@@ -26,8 +26,8 @@ class Config():
     @classmethod
     def config_path(cls) -> Path:
         if cls._CONFIG_PATH is None:
-            if environ.get("IDS_CONFIG_PATH") is not None:
-                cls._CONFIG_PATH = Path(environ["IDS_CONFIG_PATH"])
+            if environ.get("VIPER_CONFIG_PATH") is not None:
+                cls._CONFIG_PATH = Path(environ["VIPER_CONFIG_PATH"])
             else: 
                 cls._CONFIG_PATH = Path(os.getcwd()) / "viper.toml"
         return cls._CONFIG_PATH
@@ -40,9 +40,9 @@ class Config():
 
     @classmethod
     def _read_config(cls) -> ViperConfig:
-        ids_config = toml.load(cls.config_path())
-        ids_config["IDS_CONFIG_PATH"] = cls.config_path()
-        ids_config = ViperConfig(**ids_config)
-        return ids_config
+        config = toml.load(cls.config_path())
+        config["VIPER_CONFIG_PATH"] = cls.config_path()
+        config = ViperConfig(**config)
+        return config
 
 config = Config
