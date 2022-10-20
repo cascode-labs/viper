@@ -35,7 +35,8 @@
 				"GitHub.vscode-pull-request-github",
 				"cschleiden.vscode-github-actions",
 				"timonwong.shellcheck",
-				"hediet.vscode-drawio"
+				"hediet.vscode-drawio",
+				"bungcip.better-toml"
 			]
 		}
 	},
