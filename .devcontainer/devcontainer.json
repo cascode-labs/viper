@@ -4,12 +4,9 @@
 	"name": "Miniconda (Python 3)",
 	"build": { 
 		"context": "..",
-		"dockerfile": "Dockerfile",
-		"args": {
-			"NODE_VERSION": "lts/*"
-		}
+		"dockerfile": "Dockerfile"
 	},
-
+	"runArgs": ["--name=viper-dev"],
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -33,7 +30,12 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance"
+				"ms-python.vscode-pylance",
+				"mhutchie.git-graph",
+				"GitHub.vscode-pull-request-github",
+				"cschleiden.vscode-github-actions",
+				"timonwong.shellcheck",
+				"hediet.vscode-drawio"
 			]
 		}
 	},
@@ -42,12 +44,12 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "python --version",
+	"postCreateCommand": "conda init; git config --global --add safe.directory /workspaces/viper; pip install --no-deps -e .",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
 	"features": {
-		"git": "latest",
-		"github-cli": "latest"
+		//"git": "latest",
+		//"github-cli": "latest"
 	}
 }
