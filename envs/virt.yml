@@ -1,8 +1,0 @@
-name: viper
-channels:
-  - defaults
-  - conda-forge
-dependencies:
-  - conda=4.9.*
-  - xonsh
-  - git
