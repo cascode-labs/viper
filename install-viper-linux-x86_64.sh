@@ -2,7 +2,7 @@
 help() {
   echo ""
   echo "VIPER INSTALLER"
-  echo " install_viper.sh [options] site_path"
+  echo " install-viper-linux-x86_64.sh [options] site_path"
   echo "  Creates a viper site environment at site_path"
   echo ""
   echo " Options:"
@@ -10,7 +10,7 @@ help() {
   echo "      Mambaforge install script and viper.yml file"
   echo "   -f --file: A conda environment yaml file defining a custom set of"
   echo "      packages to install into the user's terminal viper environment"
-  echo "   -h --help: Display this help message.It is also "
+  echo "   -h --help: Display this help message. It is also "
   echo "      displayed when called without any arguments"
   echo ""
   exit 0
