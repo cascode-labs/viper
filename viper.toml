@@ -1,4 +1,4 @@
-# Viper environment configuration.  Run ids config --help for more info.
+# Viper environment configuration.  Run viper config --help for more info.
 default_project_root = "/prj"
 
 [docs]
