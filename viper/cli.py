@@ -5,14 +5,13 @@ import click
 
 from rich.panel import Panel
 from rich.padding import Padding
-from rich.markup import escape
 
 import viper
 from viper.docs import docs_url, open_docs_in_firefox
 from viper.console import console
-from viper.api import read_config
 from viper.project.cli import project
 from viper.project.start import start
+from viper.config.cli import config_cli
 
 @click.group()
 @click.version_option(viper.__version__, '-v', '--version', message="%(version)s")
@@ -21,16 +20,8 @@ def cli():
 
     Documentation: https://www.cascode-labs.org/viper/
     """
-    pass
 
-@cli.command()
-@click.argument('parameters', nargs=-1)
-@click.option('-t', '--toml', default=False, help="Print the result in TOML format", is_flag=True)
-@click.option('-p', '--path', default=None, help="Path to the viper environment configuration toml file")
-def config(parameters, toml, path)-> None:
-    """Read the Viper environment configuration"""
-    console.print(escape(read_config(*parameters, toml_format=toml, path=path)))
-
+cli.add_command(config_cli)
 cli.add_command(project)
 cli.add_command(start)
 

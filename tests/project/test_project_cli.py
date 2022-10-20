@@ -1,6 +1,7 @@
 from viper.cli import cli
 from viper.config.read import config
 
+
 def test_build_project_cli_directories(cli_runner):
     project_name = "test_project_cli"
     result = cli_runner.invoke(cli, ['project', "create", project_name])

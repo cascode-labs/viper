@@ -22,12 +22,6 @@ def test_cli_welcome(cli_runner):
   assert 'Viper open circuit design environment' in result.output
   assert f"v{viper.__version__}" in result.output
 
-def test_cli_config(cli_runner):
-  result = cli_runner.invoke(cli, ['welcome'])
-  assert result.exit_code == 0
-  assert 'Viper open circuit design environment' in result.output
-  assert f"v{viper.__version__}" in result.output
-
 def test_cli_docs(cli_runner):
   with patch('subprocess.run') as mock_run:
       result = cli_runner.invoke(cli, ['docs'])

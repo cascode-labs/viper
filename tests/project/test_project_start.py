@@ -1,6 +1,6 @@
-from unittest.mock import patch
-from viper.project.sp import start_project
 import os
+from unittest.mock import patch
+from viper.project.start import start_project
 
 
 def test_start_project():

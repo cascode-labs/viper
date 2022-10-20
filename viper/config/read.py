@@ -6,7 +6,7 @@ from typing import Union, Optional
 import toml
 from viper.config.config_data import ViperConfig
 
-   
+
 class Config():
     _CONFIG_PATH: Optional[Path] = None
     _CONFIG: Optional[ViperConfig] = None
@@ -28,10 +28,10 @@ class Config():
         if cls._CONFIG_PATH is None:
             if environ.get("VIPER_CONFIG_PATH") is not None:
                 cls._CONFIG_PATH = Path(environ["VIPER_CONFIG_PATH"])
-            else: 
+            else:
                 cls._CONFIG_PATH = Path(os.getcwd()) / "viper.toml"
         return cls._CONFIG_PATH
-    
+
     @classmethod
     def dict(cls) -> dict:
         if cls._CONFIG is None:
