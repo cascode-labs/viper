@@ -1,5 +1,5 @@
 from unittest.mock import patch
-from viper.sp import start_project
+from viper.project.sp import start_project
 import os
 
 

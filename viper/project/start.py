@@ -1,20 +1,22 @@
 """
-Start project (sp)
+Start a Viper circuit design project
 """
 import os
 import platform
 import subprocess
-from pathlib import Path
+from typing import Optional, List
 import click
-import toml
+from viper.config import config
+
 
 SHELL_OPTIONS = ['tcsh', 'bash']
-# ROOT_DEFAULT = "/prj"
 
 
-def start_project(project, dev=False, name=None, prefix=False, shell=None, init=None, skill=None):
+def start_project(project: str, dev: bool = False,
+                  name: str=None, prefix: str=False,
+                  shell: Optional[str] = None, init: str = None):
     """
-    Start project ("sp" CLI command)
+    Start project ("viper start" CLI command)
 
     :param project: The name of the project to open
     :param dev: A flag for toggling the development mode
@@ -26,19 +28,18 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
                   options
     :param init: Paths to one or more shell initialization scripts which will
                  be sourced, each delimited by a ":",
-                 this option can also be specified multiple times to add additional scripts.
-    :param skill: Paths to one or more SKILL initialization scripts which will be loaded using loadi,
-                   each delimited by a \":\", this option can also be specified multiple times to add
-                   additional scripts.
+                 this option can also be specified multiple times to
+                 add additional scripts.
     :return:
     """
 
-    # Set dev env variable when dev is set
+    # Setup env variables
     if dev:
         os.environ["VIPER_DEV"] = "TRUE"
+    os.environ["VIPER_PROJECT_NAME"] = project
 
     # Parse shell and skill script initialization paths
-    def process_file_paths(scripts):
+    def process_file_paths(scripts) -> Optional[List[str]]:
         if isinstance(scripts, str):
             scripts = list(scripts)
         scripts_exist = []
@@ -52,17 +53,17 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
         else:
             scripts_out = None
         return scripts_out
-    viper_config_path = os.environ["VIPER_CONFIG_PATH"]
-    config=toml.load(viper_config_path)
-    projects_root = config["environment"]["projects_path"]
+
+    config_dict = config.dict()
+    projects_root = config_dict["default_project_root"]
 
     init = process_file_paths(init)
     if init is None:
         init = "None"
 
-    skill = process_file_paths(skill)
-    if skill is not None:
-        os.environ["VIPER_SP_SKILL_INIT"] = skill
+    # skill = process_file_paths(skill)
+    # if skill is not None:
+    #     os.environ["VIPER_SP_SKILL_INIT"] = skill
 
     if shell is None:
         shell = default_shell()
@@ -71,11 +72,11 @@ def start_project(project, dev=False, name=None, prefix=False, shell=None, init=
         "tcsh": "sp_tcsh",
         "bash": "sp_bash",
     }
-    # Run command
 
+    # Run command
     subprocess.run([commands[shell], str(project),
                     str(name), str(prefix), init],
-                   env=os.environ)
+                   env=os.environ, check=True)
 
 
 def default_shell():
@@ -88,45 +89,35 @@ def default_shell():
             default = os.environ["VIPER_SP_SHELL_DEFAULT"]
         else:
             default = "tcsh"
-
     elif platform.system() == "Windows":
         default = "cmd"
     else:
-        raise RuntimeError("Unsupported platform: %s", platform.system())
+        raise RuntimeError("Unsupported platform: %s", str(platform.system()))
     return default
 
-def read_config(site_file: Path):
-    config=toml.load(site_file)
-
-    config["environment"]["projects_path"]
 
 # Command Line Interface
 @click.command()
 @click.option("--dev/--nodev", "-d/-o", default=False, is_flag=True,
-              help="A flag for toggling the development mode")
+    help="A flag for toggling the development mode")
 @click.option("--name", "-n", default=None,
-              help="Conda name to activate. prefix and name are mutually exclusive options.")
+    help="Conda name to activate. prefix and name are mutually exclusive options.")
 @click.option("--prefix", "-p", default=None,
-              help="Conda Prefix to activate. prefix and name are mutually exclusive options.")
+    help="Conda Prefix to activate. prefix and name are mutually exclusive options.")
 @click.option("--shell", "-s", default=default_shell(), type=click.Choice(SHELL_OPTIONS, case_sensitive=False),
-              help="The type of shell script specified with the --init or -i options")
+    help="The type of shell script specified with the --init or -i options")
 @click.option("--init", "-i", default=None, type=str, multiple=True,
-              help="Paths to one or more shell initialization scripts which will be sourced, each delimited by a \":\","
-                   " this option can also be specified multiple times to add additional scripts.")
+    help="Paths to one or more shell initialization scripts which will be sourced, each delimited by a \":\","
+         " this option can also be specified multiple times to add additional scripts.")
 @click.option("--skill", "-k", "-replay", default=None, type=str, multiple=True,
-              help="Paths to one or more SKILL initialization scripts which will be loaded using loadi, "
-                   "each delimited by a \":\", this option can also be specified multiple times to add "
-                   "additional scripts.")
+    help="Paths to one or more SKILL initialization scripts which will be loaded using loadi, "
+          "each delimited by a \":\", this option can also be specified multiple times to add "
+          "additional scripts.")
 @click.version_option()
 @click.argument("project", type=str)
-def sp(project, dev, name, prefix, shell, init, skill):
+def start(project, dev, name, prefix, shell, init):
     """
-    Start Project
-     sp [options] project
-     starts the given Cadence Virtuoso project
+    Starts a Viper circuit design project
     """
-    start_project(project, dev, name, prefix, shell, init, skill)
-
-
-if __name__ == '__main__':
-    sp(auto_envvar_prefix='VIPER')
+    start_project(project=project, dev=dev, name=name, prefix=prefix,
+                  shell=shell, init=init)

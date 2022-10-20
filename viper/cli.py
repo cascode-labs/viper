@@ -11,12 +11,14 @@ import viper
 from viper.docs import docs_url, open_docs_in_firefox
 from viper.console import console
 from viper.api import read_config
+from viper.project.cli import project
+from viper.project.start import start
 
 @click.group()
 @click.version_option(viper.__version__, '-v', '--version', message="%(version)s")
 def cli():
     """Viper open circuit design environment
-    
+
     Documentation: https://www.cascode-labs.org/viper/
     """
     pass
@@ -28,6 +30,9 @@ def cli():
 def config(parameters, toml, path)-> None:
     """Read the Viper environment configuration"""
     console.print(escape(read_config(*parameters, toml_format=toml, path=path)))
+
+cli.add_command(project)
+cli.add_command(start)
 
 @cli.command()
 def docs():
