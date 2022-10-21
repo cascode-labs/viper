@@ -27,6 +27,9 @@ clean:
 build:
 	flit build
 
+publish:
+	flit publish
+
 docs:
 	cd docs; make html
 
