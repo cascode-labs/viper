@@ -10,8 +10,7 @@ from viper.config import config
 @click.command(name="config")
 @click.argument('parameters', nargs=-1)
 @click.option('-t', '--toml', 'toml_format', default=False, help="Print the result in TOML format", is_flag=True)
-@click.option('-p', '--path', default=None, help="Path to the viper environment configuration toml file")
-def config_cli(parameters, toml_format, path)-> None:
+def config_cli(parameters, toml_format)-> None:
     """Read the Viper environment configuration"""
     if len(parameters) == 0:
         config_dict = config.dict()
@@ -20,7 +19,7 @@ def config_cli(parameters, toml_format, path)-> None:
             config_out = toml.dumps(config_out)
             config_out = escape(config_out)
     else:
-        config_out = read_config(*parameters, toml_format=toml, path=path)
+        config_out = read_config(*parameters, toml_format=toml_format)
     console.print(config_out)
 
 
