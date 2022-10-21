@@ -8,7 +8,7 @@ def read_config(*params, toml_format=False) -> Any:
     value = config.dict()
     for param in params:
         value = value[param]
-    if not isinstance(value, dict) and len(params)>0:
+    if not isinstance(value, dict) and len(params)>0 and toml_format:
         if isinstance(value, Path):
             value = str(value)
         value = {param: value}
