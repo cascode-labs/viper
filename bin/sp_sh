@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ssp: start project using sh
-#  Called from sp command
+#  Also called from sp command
 #  ssp project name prefix shell-init py-init
 
 # Defaults

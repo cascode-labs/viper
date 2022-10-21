@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# tsp: start project using bash
+# sp_bash: start project using bash
 #  Called from sp command
-#  tsp project name prefix shell-init py-init
+#  sp_bash project name prefix shell-init py-init
 
 # TODO: Implement a sh version of sp
 
@@ -17,4 +17,4 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # source the ssp command contained in the same folder
 # shellcheck disable=SC1090
-source "${DIR}/ssp"
+source "${DIR}/sp_sh"
