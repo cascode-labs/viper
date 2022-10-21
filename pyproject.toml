@@ -23,6 +23,13 @@ classifiers = [
 requires-python = ">=3.8"
 dynamic = ["version", "description"]
 
+dependencies = [
+    "click > 8.1, < 9",
+    "rich >= 12.5, < 13",
+    "pydantic >= 1.8, < 2",
+    "toml >= 0.10, < 1",
+]
+
 [project.urls]
 Documentation = "http://www.cascode-labs.org/viper/"
 Source = "https://github.com/cascode-labs/viper"
