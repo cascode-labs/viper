@@ -1,29 +1,40 @@
-# VIPER
+# Overview
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Viper is a **hybrid integrated circuit design environment**.
+It supports design workflows with both open-source and proprietary software
+tools.  It also natively supports software and generator based circuit design
+flows in addition to traditional flows.
 
-Viper is an open integrated circuit design environment.  It supports design
-workflows with both free and proprietary software tools.  It also natively
-supports software-based circuit design flows in addition to 
-traditional flows.
+It supports both open source tools and Cadence Virtuoso with the
+[Virtue](https://www.cascode-labs.org/virtue/)
+package.  It also supports extensions to easily extend its functionality.
 
-It supports both open source tools and
-[Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html)
-with the [Virtue](http://www.cascode-labs.org/virtue/) package.  
+## Commands
 
-## Environment Manager
+* `viper open <project_name>` - Open a project in the project manager gui
+* `viper config` - Read the viper environment configuration
+* `viper project create <project_name>` - Create a new Viper project
+* `viper welcome` - Display a welcome message with the version and
+  documentation URL
+* `viper --help` - Print a help message
+* `viper --docs` - Print the URL to the documentation
 
-It has a circuit design package and environment manager that makes it easy
-to install packages and create additional environments so the environment can
-be customized to the needs of every team and every project.
+## Project Manager
 
-[viper-forge](http://www.cascode-labs.org/viper-forge/) is developing a set of
-viper packages.
+![project manager gui](imgs/viper_project_manager_mockup.png)
 
-## Getting Started
+**Still under development**
 
-Setup a new machine or site using the
-[install script](https://github.com/cascode-labs/viper/releases/latest/download/install-viper-linux-x86_64.sh).
+## Viper Design Environment
+EDA environments can be difficult and messy to setup. Viper simplifies
+this process with declaritive toml configuration files.  It also makes tool
+selection and initialization pythonic by turning them into Python Conda
+packages and installing them into virtual design environments.
+
+## Viper-forge
+[Viper-forge](https://www.cascode-labs.org/viper-forge/)
+is an initiative to develop conda recipes to package EDA tools
+into conda packages hosted on [conda-forge](https://conda-forge.org/).
 
 ## Contributing
 
@@ -38,12 +49,3 @@ and hopefully submit a pull request with your update.
 For more general questions or if you're looking for guidance on getting
 started, post in
 [GitHub discussions](https://github.com/cascode-labs/viper/discussions).
-
-## Cadence Virtuoso Support
-
-Cadence Virtuoso is supported with the [Virtue](http://www.cascode-labs.org/virtue/) package.
-
-## Command Line Interfaces
-
-- sp: "start project" Opens a Viper project.
-      Run "sp --help" for more details

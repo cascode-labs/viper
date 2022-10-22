@@ -1,0 +1,20 @@
+site_name: Viper
+site_url: http://www.cascode-labs.org/viper/
+repo_url: https://github.com/cascode-labs/viper
+repo_name: cascode-labs/viper
+theme:
+  name: material
+  logo: logo/viper_logo-transparent.png
+  favicon: logo/viper_logo-transparent.png
+  features:
+    - navigation.tabs
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/cascode-labs/viper
+    - icon: fontawesome/solid/house
+      link: https://www.cascode-labs.org/
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/curtis-mayberry-1364a130/
+markdown_extensions:
+  - mkdocs-click
