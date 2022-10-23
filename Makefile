@@ -31,10 +31,13 @@ publish:
 	flit publish
 
 docs:
-	cd docs; make html
+	mkdocs build
 
 auto-docs:
-	cd docs; ./autobuild.sh
+	mkdocs serve
+
+deploy-docs:
+	mkdocs gh-deploy --force --theme material
 
 install-conda-dev:
 	mamba env create -f environment.yml

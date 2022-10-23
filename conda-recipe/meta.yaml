@@ -1,5 +1,5 @@
 {% set name = "viper" %}
-{% set version = "0.1.14" %}
+{% set version = "0.1.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -10,43 +10,45 @@ source:
     folder: bin
   - path: ../viper
     folder: viper
-  - path: ../viper.init.il
-  - path: ../viper.lmgrinit
   - path: ../README.md
   - path: ../conda-recipe
-    folder: conda-recipe
-  - path: ../conda-recipe
-  - path: ../setup.py
+  - path: ../pyproject.toml
   - path: ../docs
     folder: docs
 requirements:
-  build:
-    - python=3.7
-    - setuptools=51.0.*
+  host:
+    - python=3.8
+    - flit=3.7
+    - pip=22.3
   run:
-    - python=3.7
-    - click=7.1.*
+    - python>=3.8
+    - click>8.1,<9
+    - rich>=12.5,<13
+    - pydantic>=1.8,<2
+    - toml>=0.10,<1
 
 build:
-  number: 1
+  number: 0
   entry_points:
-    - sp=viper.sp:sp
-    - viper=viper.cli:viper
+    - viper=viper.cli:cli
 
 test:
   imports:
     - viper
   commands:
-    - sp --help
+    - viper --version
     - viper --help
 
 about:
-  home: https://cascode-labs.github.io/viper
+  home: http://www.cascode-labs.org/viper/
   license: MIT
-  summary: Easily initialize IC automation projects in Cadence Virtuoso using Conda
+  summary: A hybrid integrated circuit design environment
   description: |
-    viper enables IC automation projects to be easily initialized.
-    The sp command starts virtuoso in the specified conda environment.
+    Viper is a hybrid circuit design environment, supporting both open-source
+    and proprietary tools.  It includes a project manager interface
+    and a CLI for project configuration and management.  It also natively
+    supports generator based design flows.
+
   dev_url: https://github.com/cascode-labs/viper
-  doc_url: https://cascode-labs.github.io/viper
+  doc_url: http://www.cascode-labs.org/viper/
   doc_source_url: https://github.com/cascode-labs/viper/docs
