@@ -18,6 +18,12 @@ class Config():
         cls._CONFIG_PATH = path
 
     @classmethod
+    def get_config_path(cls) -> Path:
+        if cls._CONFIG_PATH is None:
+            cls._read_config()
+        return cls._CONFIG_PATH
+
+    @classmethod
     def reload(cls, path: Optional[Union[Path, str]]) -> None:
         if path is not None:
             cls._CONFIG_PATH = Path(path)

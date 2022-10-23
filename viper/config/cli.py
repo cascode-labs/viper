@@ -7,9 +7,19 @@ from viper.api import read_config
 from viper.config import config
 
 
+def get_sources(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+    config_path = config.get_config_path()
+    console.print(f"{config_path}")
+    ctx.exit()
+
 @click.command(name="config")
 @click.argument('parameters', nargs=-1)
 @click.option('-t', '--toml', 'toml_format', default=False, help="Print the result in TOML format", is_flag=True)
+@click.option("--sources", is_flag=True, callback=get_sources,
+              expose_value=False, is_eager=True,
+              help="show the documentation URL and exit")
 def config_cli(parameters, toml_format)-> None:
     """Read the Viper environment configuration"""
     if len(parameters) == 0:
