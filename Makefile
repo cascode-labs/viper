@@ -5,7 +5,7 @@ help:
 	@echo "Build Packages"
 	@echo "  'make Build' will build both a wheel and sdist"
 	@echo "Install"
-	@echo "  'make install-conda' will install a conda development environment"
+	@echo "  'make install-dev' will install a conda development environment"
 	@echo "Build documentation"
 	@echo "  'make auto-docs' will continuosly rebuild the docs"
 	@echo "     as they are updated"
@@ -15,11 +15,14 @@ help:
 	@echo ""
 
 .PHONY: help clean \
-		build build-wheel build-sdist \
-		docs auto-docs \
-		install-conda install-conda-dev-only install-pip-dev
+		build publish \
+		docs  \
+		install-dev
 
-install-conda: install-conda-dev-only install-pip-dev
+install-dev:
+	mamba env create -f environment.yml
+	conda activate viper-dev
+	pip install --no-deps -e .
 
 clean:
 	rm -rf dist
@@ -29,27 +32,10 @@ build:
 
 publish:
 	flit publish
-
-docs:
-	mkdocs build
-
-auto-docs:
-	mkdocs serve
-
-deploy-docs:
 	mkdocs gh-deploy --force --theme material
 
-install-conda-dev:
-	mamba env create -f environment.yml
-
-install-pip-dev:
-	pip install --no-deps -e .
-
-build-wheel:
-	flit build --format wheel
-
-build-sdist:
-	flit build --format wheel
+docs:
+	mkdocs serve
 
 install-conda-base:
 	wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh"
