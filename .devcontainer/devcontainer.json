@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/python-3-miniconda
 {
-	"name": "Miniconda (Python 3)",
+	"name": "viper-dev",
 	"build": {
 		"context": "..",
 		"dockerfile": "Dockerfile"
@@ -45,7 +45,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "conda init; git config --global --add safe.directory /workspaces/viper; pip install --no-deps -e .; pre-commit install",
+	"postCreateCommand": "conda init; git config --global --add safe.directory /workspaces/viper; pip install --no-deps -e .; pre-commit install; conda config --set ssl_verify false; conda config --add channels conda-forge",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
