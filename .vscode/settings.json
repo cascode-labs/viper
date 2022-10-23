@@ -8,5 +8,6 @@
     "editor.rulers": [79],
     "yaml.schemas": {
         "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
-    }
+    },
+    //"python.defaultInterpreterPath": "${env:CONDA_PREFIX}/envs/viper-dev/bin/python"
 }
