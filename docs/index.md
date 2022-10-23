@@ -14,6 +14,7 @@ package.  It also supports extensions to easily extend its functionality.
 * `viper open <project_name>` - Open a project in the project manager gui
 * `viper config` - Read the viper environment configuration
 * `viper project create <project_name>` - Create a new Viper project
+* `viper project info <project_name>` - Display a summary of the project
 * `viper welcome` - Display a welcome message with the version and
   documentation URL
 * `viper --help` - Print a help message
