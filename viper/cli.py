@@ -7,37 +7,30 @@ from rich.panel import Panel
 from rich.padding import Padding
 
 import viper
-from viper.docs import docs_url, open_docs_in_firefox
+from viper.docs import docs_url
 from viper.console import console
 from viper.project.cli import project
-from viper.project.start import start
+from viper.project.open import open_project
 from viper.config.cli import config_cli
+
+
+def docs(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+    url = docs_url()
+    console.print(f"[link={url}]documentation[/link]")
+    ctx.exit()
 
 @click.group()
 @click.version_option(viper.__version__, '-v', '--version', message="%(version)s")
+@click.option("--docs", is_flag=True, callback=docs,
+              expose_value=False, is_eager=True,
+              help="show the documentation URL and exit")
 def cli():
     """Viper open circuit design environment
 
     Documentation: https://www.cascode-labs.org/viper/
     """
-
-cli.add_command(config_cli)
-cli.add_command(project)
-cli.add_command(start)
-
-@cli.command()
-def docs():
-    """Open the documentation in firefox"""
-    open_docs()
-
-@cli.command()
-def documentation():
-    """Open the documentation in firefox"""
-    open_docs()
-
-def open_docs():
-    console.print("opening " + docs_url())
-    open_docs_in_firefox()
 
 @cli.command()
 def welcome()-> None:
@@ -49,6 +42,12 @@ def welcome()-> None:
                   justify ="center")
     console.print(docs_url(), justify ="center")
     console.print("")
+
+
+cli.add_command(config_cli)
+cli.add_command(project)
+cli.add_command(open_project)
+
 
 if __name__ == '__main__':
     cli(auto_envvar_prefix='VIPER')

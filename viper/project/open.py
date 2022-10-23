@@ -12,7 +12,7 @@ from viper.config import config
 SHELL_OPTIONS = ['tcsh', 'bash']
 
 
-def start_project(project: str, dev: bool = False,
+def open_project(project: str, dev: bool = False,
                   name: str=None, prefix: str=False,
                   shell: Optional[str] = None, init: str = None):
     """
@@ -97,7 +97,7 @@ def default_shell():
 
 
 # Command Line Interface
-@click.command()
+@click.command("open")
 @click.option("--dev/--nodev", "-d/-o", default=False, is_flag=True,
     help="A flag for toggling the development mode")
 @click.option("--name", "-n", default=None,
@@ -115,9 +115,9 @@ def default_shell():
           "additional scripts.")
 @click.version_option()
 @click.argument("project", type=str)
-def start(project, dev, name, prefix, shell, init):
+def open_project(project, dev, name, prefix, shell, init):
     """
-    Starts a Viper circuit design project
+    Opens a Viper circuit design project
     """
-    start_project(project=project, dev=dev, name=name, prefix=prefix,
+    open_project(project=project, dev=dev, name=name, prefix=prefix,
                   shell=shell, init=init)
