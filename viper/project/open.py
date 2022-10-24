@@ -69,14 +69,18 @@ def open_project(project: str, dev: bool = False,
         shell = default_shell()
 
     commands = {
-        "tcsh": "sp_tcsh",
+        "tcsh": "viper_open_tcsh",
         "bash": "sp_bash",
     }
 
+    command = "\cdsprj ${VIPER_PROJECT_NAME}; virtuoso\""
     # Run command
-    subprocess.run([commands[shell], str(project),
-                    str(name), str(prefix), init],
+    completed_process = subprocess.run(["viper_open_tcsh", project],
                    env=os.environ, check=True)
+    # completed_process = subprocess.run(["tcsh"],
+    #                env=os.environ, check=True)
+    if completed_process.returncode != 0:
+        print(completed_process)
 
 
 def default_shell():
@@ -85,8 +89,8 @@ def default_shell():
         login_shell = os.path.basename(os.environ["SHELL"])
         if login_shell in SHELL_OPTIONS:
             default = login_shell
-        elif os.environ["VIPER_SP_SHELL_DEFAULT"] is not None:
-            default = os.environ["VIPER_SP_SHELL_DEFAULT"]
+        elif os.environ["VIPER_SHELL_DEFAULT"] is not None:
+            default = os.environ["VIPER_SHELL_DEFAULT"]
         else:
             default = "tcsh"
     elif platform.system() == "Windows":
@@ -109,15 +113,11 @@ def default_shell():
 @click.option("--init", "-i", default=None, type=str, multiple=True,
     help="Paths to one or more shell initialization scripts which will be sourced, each delimited by a \":\","
          " this option can also be specified multiple times to add additional scripts.")
-@click.option("--skill", "-k", "-replay", default=None, type=str, multiple=True,
-    help="Paths to one or more SKILL initialization scripts which will be loaded using loadi, "
-          "each delimited by a \":\", this option can also be specified multiple times to add "
-          "additional scripts.")
-@click.version_option()
+#@click.option("--command", default="virtuoso", type=str, multiple=True,
+#    help="The command to start the project")
 @click.argument("project", type=str)
-def open_project(project, dev, name, prefix, shell, init):
+def open_project_cli(project, dev, name, prefix, shell, init):
     """
     Opens a Viper circuit design project
     """
-    open_project(project=project, dev=dev, name=name, prefix=prefix,
-                  shell=shell, init=init)
+    open_project(project, dev, name, prefix, shell, init)

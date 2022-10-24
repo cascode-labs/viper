@@ -10,7 +10,7 @@ import viper
 from viper.docs import docs_url
 from viper.console import console
 from viper.project.cli import project
-from viper.project.open import open_project
+from viper.project.open import open_project_cli
 from viper.config.cli import config_cli
 
 
@@ -46,7 +46,7 @@ def welcome()-> None:
 
 cli.add_command(config_cli)
 cli.add_command(project)
-cli.add_command(open_project)
+cli.add_command(open_project_cli)
 
 
 if __name__ == '__main__':
