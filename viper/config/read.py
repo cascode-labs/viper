@@ -15,6 +15,10 @@ class Config():
     def set_config_path(cls, path: Union[Path, str]) -> None:
         if isinstance(path, str):
             path = Path(path)
+        if not path.exists():
+            raise FileNotFoundError(
+                "Config file not found, please set the" +
+                " \"IDS_CONFIG_PATH\" environment variable" )
         cls._CONFIG_PATH = path
 
     @classmethod
