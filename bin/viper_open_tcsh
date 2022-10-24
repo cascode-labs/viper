@@ -1,0 +1,14 @@
+#!/bin/tcsh
+
+# viper_open_tcsh <path_to_project>
+#  Opens a project in virtuoso using a tcsh shell
+#  Called from "viper open <project_name>"
+
+cd $1
+
+# run cdsprj if the alias exists
+if ( ( $1 != "." ) && ( `where cdsprj` != "" ) ) then
+    cdsprj ${VIPER_PROJECT_NAME}
+endif
+
+virtuoso
