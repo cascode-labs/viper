@@ -29,6 +29,7 @@ clean:
 
 build:
 	flit build
+	pyinstaller -n viper -F viper/cli.py
 
 publish:
 	flit publish

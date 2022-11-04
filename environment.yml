@@ -10,6 +10,7 @@ dependencies:
   - toml=0.10
   - pip=22.2
   - pyside2=5.15
+  - pyinstaller=5.6
   #- pip:
   #  - PySide6
   # Testing and CI
