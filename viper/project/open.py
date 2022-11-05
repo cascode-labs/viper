@@ -62,9 +62,9 @@ def open_project(project: str, dev: bool = False,
         os.environ["VIPER_PROJECT_INIT_SHELL"] = init
 
     if prefix is None:
-        conda_prefix = config_dict["conda"]["prefixes"]["virtuoso"]
-        if conda_prefix is not None:
-            os.environ["VIPER_PROJECT_CONDA_PREFIX"] = str(conda_prefix)
+        prefix = config_dict["conda"]["prefixes"]["virtuoso"]
+    if prefix is not None:
+        os.environ["VIPER_PROJECT_CONDA_PREFIX"] = str(prefix)
     
     # skill = process_file_paths(skill)
     # if skill is not None:
