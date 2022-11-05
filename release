@@ -1,0 +1,16 @@
+#!/bin/bash
+SCRIPT=$(realpath "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+export PATH=${SCRIPTPATH}/dist/bin:${PATH}
+
+make clean
+make build
+export DEVEL_DIR_ROOT="/rds/devel/R/HOTCODE/amslibs/oa614/cdsware/IDS/viper"
+export RDS_RW_DIR_ROOT="/rds/prod.rw/HOTCODE/amslibs/oa614/cdsware/IDS/viper"
+export RDS_DIR_ROOT="/rds/prod/HOTCODE/amslibs/oa614/cdsware/IDS/viper"
+ids-release \
+    'viper' \
+    "${SCRIPTPATH}/dist" \
+    "$("${SCRIPTPATH}"/dist/bin/viper --version)" \
+    "$1" \
+    "$2"

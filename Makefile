@@ -28,8 +28,11 @@ clean:
 	rm -rf dist
 
 build:
+	make clean
 	flit build
-	pyinstaller -n viper -F viper/cli.py
+	pyinstaller -n viper -F --distpath ./dist/bin viper/cli.py
+	cp -rf bin dist/bin
+	chmod 775 dist/**
 
 publish:
 	flit publish
