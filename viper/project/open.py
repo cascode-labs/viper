@@ -13,8 +13,8 @@ SHELL_OPTIONS = ['tcsh', 'bash']
 
 
 def open_project(project: str, dev: bool = False,
-                  name: str=None, prefix: str=False,
-                  shell: Optional[str] = None, init: str = None):
+                  name: Optional[str] = None, prefix: str=False,
+                  shell: Optional[str] = None, init: Optional[str] = None):
     """
     Start project ("viper start" CLI command)
 
@@ -58,9 +58,14 @@ def open_project(project: str, dev: bool = False,
     projects_root = config_dict["default_project_root"]
 
     init = process_file_paths(init)
-    if init is None:
-        init = "None"
+    if init is not None:
+        os.environ["VIPER_PROJECT_INIT_SHELL"] = init
 
+    if prefix is None:
+        conda_prefix = config_dict["conda"]["prefixes"]["virtuoso"]
+        if conda_prefix is not None:
+            os.environ["VIPER_PROJECT_CONDA_PREFIX"] = str(conda_prefix)
+    
     # skill = process_file_paths(skill)
     # if skill is not None:
     #     os.environ["VIPER_SP_SKILL_INIT"] = skill
@@ -72,13 +77,12 @@ def open_project(project: str, dev: bool = False,
         "tcsh": "viper_open_tcsh",
         "bash": "sp_bash",
     }
+    os.environ["VIPER_PROJECT_PATH"] = f"{projects_root}/{project}"
 
-    command = "\cdsprj ${VIPER_PROJECT_NAME}; virtuoso\""
     # Run command
-    completed_process = subprocess.run(["viper_open_tcsh", project],
+    completed_process = subprocess.run(["viper_open_tcsh"],
                    env=os.environ, check=True)
-    # completed_process = subprocess.run(["tcsh"],
-    #                env=os.environ, check=True)
+
     if completed_process.returncode != 0:
         print(completed_process)
 

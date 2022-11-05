@@ -4,7 +4,21 @@
 #  Opens a project in virtuoso using a tcsh shell
 #  Called from "viper open <project_name>"
 
-cd $1
+echo ""
+echo "Viper project startup:"
+echo "  VIPER_PROJECT_NAME = $VIPER_PROJECT_NAME"
+echo "  VIPER_PROJECT_PATH = $VIPER_PROJECT_PATH"
+echo "  VIPER_PROJECT_CONDA_PREFIX = $VIPER_PROJECT_CONDA_PREFIX"
+
+cd ${VIPER_PROJECT_PATH}
+
+# Activate conda env if required
+if ( ( $?VIPER_PROJECT_CONDA_PREFIX ) ) then
+    source ${VIPER_PROJECT_CONDA_PREFIX}/etc/profile.d/conda.csh activate
+    echo "Activated Conda env:"
+    echo "  ${VIPER_PROJECT_CONDA_PREFIX}"
+    conda info
+endif
 
 # run cdsprj if the alias exists
 if ( ( $1 != "." ) && ( `where cdsprj` != "" ) ) then
