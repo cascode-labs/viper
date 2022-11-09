@@ -10,7 +10,7 @@
   <h2 align="center">Viper</h2>
 
   <p align="center">
-    A hybrid integrated circuit design environment (ICDE) with extensions both open-source and proprietary design tools
+    A hybrid integrated circuit design environment (ICDE) with extensions for both open-source and proprietary design tools
     <br/>
     Still under development and not ready for regular usage
     <br />
