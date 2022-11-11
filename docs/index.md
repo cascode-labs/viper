@@ -7,7 +7,8 @@ flows in addition to traditional flows.
 
 It supports both open source tools and Cadence Virtuoso with the
 [Virtue](https://www.cascode-labs.org/virtue/)
-package.  It also supports extensions to easily extend its functionality.
+package.  It is also easily extended to add new tools or integrate with
+other tools. It manages projects and their shell environment.
 
 ## Commands
 
@@ -20,19 +21,23 @@ package.  It also supports extensions to easily extend its functionality.
 * `viper --help` - Print a help message
 * `viper --docs` - Print the URL to the documentation
 
+See the [CLI reference](reference/cli_reference.md) for more details
+
 ## Project Manager
 
 ![project manager gui](imgs/viper_project_manager_mockup.png)
 
-**Still under development**
+**Still under development**: See [Contributing](index.md#contributing) below.
 
 ## Viper Design Environment
+
 EDA environments can be difficult and messy to setup. Viper simplifies
 this process with declaritive toml configuration files.  It also makes tool
 selection and initialization pythonic by turning them into Python Conda
 packages and installing them into virtual design environments.
 
 ## Viper-forge
+
 [Viper-forge](https://www.cascode-labs.org/viper-forge/)
 is an initiative to develop conda recipes to package EDA tools
 into conda packages hosted on [conda-forge](https://conda-forge.org/).
