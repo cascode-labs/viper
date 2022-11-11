@@ -9,6 +9,7 @@ echo "Viper project startup:"
 echo "  VIPER_PROJECT_NAME = $VIPER_PROJECT_NAME"
 echo "  VIPER_PROJECT_PATH = $VIPER_PROJECT_PATH"
 echo "  VIPER_PROJECT_CONDA_PREFIX = $VIPER_PROJECT_CONDA_PREFIX"
+echo ""
 
 cd ${VIPER_PROJECT_PATH}
 
@@ -18,6 +19,12 @@ if ( ( $?VIPER_PROJECT_CONDA_PREFIX ) ) then
     echo "Activated Conda env:"
     echo "  ${VIPER_PROJECT_CONDA_PREFIX}"
     conda info
+endif
+
+# this command needs to be fixed
+if ( ( `where virtue` != "" ) ) then
+    virtue env info
+    virtue env list
 endif
 
 # run cdsprj if the alias exists

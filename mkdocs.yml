@@ -8,6 +8,15 @@ theme:
   favicon: logo/viper_logo-transparent.png
   features:
     - navigation.tabs
+    - navigation.instant
+nav:
+  - Overview: 
+    - Viper: index.md
+    - Projects: projects.md
+    - Configuration: configuration.md
+  - Reference:
+    - CLI: reference/cli_reference.md
+    - Configuration: reference/viper_configuration.md
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -18,3 +27,8 @@ extra:
       link: https://www.linkedin.com/in/curtis-mayberry-1364a130/
 markdown_extensions:
   - mkdocs-click
+  - mdantic
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
