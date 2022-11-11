@@ -1,5 +1,7 @@
+from typing import Optional
 import click
 from viper.console import console
+from viper.project.Project import Project
 from viper.project.ProjectBuilder import ProjectBuilder
 
 @click.group()
@@ -8,8 +10,15 @@ def project():
     pass
 
 @project.command()
-def info():
+@click.argument('name')
+def info(name: Optional[str] = None ):
     console.print("Project")
+    project = Project(name)
+    print(project.name)
+    print(project.path)
+    print(project.config)
+    #config = project.config
+    #print(config.dict())
 
 @click.argument('name')
 @project.command()

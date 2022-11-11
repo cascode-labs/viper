@@ -1,11 +1,13 @@
 from pathlib import Path
-from typing import Optional
-
+from typing import Optional, Any, Dict
+import toml
+from viper.project.ProjectConfig import ProjectConfig
+from viper.config.read_config import read_config
 
 class Project():
-    def __init__(self, name: str, path: Optional[Path]) -> None:
-        self._name = name
-        self._path = path
+    def __init__(self, name: str, path: Optional[Path] = None) -> None:
+        self._name: str = name
+        self._path: Optional[Path] = path
     
     @property
     def name(self) -> str:
@@ -13,5 +15,12 @@ class Project():
     
     @property
     def path(self) -> Optional[Path]:
+        if self._path is None:
+            self._path = read_config("default_project_root") / self.name
         return self._path
-    
+
+    @property
+    def config(self) -> ProjectConfig:
+        config_path = self.path / "project.toml"
+        config = toml.load(config_path)
+        config = ProjectConfig(**config)
