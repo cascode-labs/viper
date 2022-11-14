@@ -15,7 +15,7 @@
     
     
       
-        <title>Viper</title>
+        <title>Viper - Viper</title>
       
     
     
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Viper
             
           </span>
         </div>
@@ -208,6 +208,34 @@
     
   
   
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
@@ -217,12 +245,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Overview
+          Viper
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="." class="md-nav__link md-nav__link--active">
-        Overview
+        Viper
       </a>
       
         
@@ -282,6 +310,41 @@
     </li>
   
 
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="projects/" class="md-nav__link">
+        Projects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
     
       
       
@@ -290,10 +353,57 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="reference/" class="md-nav__link">
-        Reference
+      <a href="reference/cli_reference/" class="md-nav__link">
+        CLI
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/viper_configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -386,20 +496,23 @@ tools.  It also natively supports software and generator based circuit design
 flows in addition to traditional flows.</p>
 <p>It supports both open source tools and Cadence Virtuoso with the
 <a href="https://www.cascode-labs.org/virtue/">Virtue</a>
-package.  It also supports extensions to easily extend its functionality.</p>
+package.  It is also easily extended to add new tools or integrate with
+other tools. It manages projects and their shell environment.</p>
 <h2 id="commands">Commands</h2>
 <ul>
 <li><code>viper open &lt;project_name&gt;</code> - Open a project in the project manager gui</li>
 <li><code>viper config</code> - Read the viper environment configuration</li>
 <li><code>viper project create &lt;project_name&gt;</code> - Create a new Viper project</li>
+<li><code>viper project info &lt;project_name&gt;</code> - Display a summary of the project</li>
 <li><code>viper welcome</code> - Display a welcome message with the version and
   documentation URL</li>
 <li><code>viper --help</code> - Print a help message</li>
 <li><code>viper --docs</code> - Print the URL to the documentation</li>
 </ul>
+<p>See the <a href="reference/cli_reference/">CLI reference</a> for more details</p>
 <h2 id="project-manager">Project Manager</h2>
 <p><img alt="project manager gui" src="imgs/viper_project_manager_mockup.png" /></p>
-<p><strong>Still under development</strong></p>
+<p><strong>Still under development</strong>: See <a href=".#contributing">Contributing</a> below.</p>
 <h2 id="viper-design-environment">Viper Design Environment</h2>
 <p>EDA environments can be difficult and messy to setup. Viper simplifies
 this process with declaritive toml configuration files.  It also makes tool
@@ -440,13 +553,13 @@ started, post in
       
       
         
-        <a href="reference/" class="md-footer__link md-footer__link--next" aria-label="Next: Reference" rel="next">
+        <a href="projects/" class="md-footer__link md-footer__link--next" aria-label="Next: Projects" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Reference
+              Projects
             </div>
           </div>
           <div class="md-footer__button md-icon">

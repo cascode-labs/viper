@@ -2,12 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://www.cascode-labs.org/viper/</loc>
-         <lastmod>2022-10-22</lastmod>
+         <lastmod>2022-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://www.cascode-labs.org/viper/reference/</loc>
-         <lastmod>2022-10-22</lastmod>
+         <loc>http://www.cascode-labs.org/viper/configuration/</loc>
+         <lastmod>2022-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://www.cascode-labs.org/viper/projects/</loc>
+         <lastmod>2022-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://www.cascode-labs.org/viper/reference/cli_reference/</loc>
+         <lastmod>2022-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://www.cascode-labs.org/viper/reference/viper_configuration/</loc>
+         <lastmod>2022-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
