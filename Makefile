@@ -28,14 +28,14 @@ clean:
 	rm -rf dist
 
 build:
-	make clean
-	flit build
-	pyinstaller -n viper -F --distpath ./dist/bin viper/cli.py
-	cp -rf bin dist/
+	make clean && \
+	flit build && \
+	pyinstaller -n viper -F --distpath ./dist/bin viper/cli.py && \
+	cp -rf bin dist/ && \
 	chmod 775 dist/**
 
 publish:
-	flit publish
+	flit publish && \
 	mkdocs gh-deploy --force --theme material -m "Release docs v{version}"
 
 docs:
