@@ -10,12 +10,12 @@ from viper.simulators.SimResult import SimResult
 
 class TestSimulator:
 
-    DEFAULT_RESULT_DIR = "/tmp/simulation"
+    DEFAULT_RESULT_DIR = Path("/tmp/simulation")
 
     def __init__(self, schematic_filepath: PathLike, 
                  test_dirpath: PathLike) -> None:
-        self.schematic_filepath = schematic_filepath
-        self.test_dirpath = test_dirpath
+        self.schematic_filepath = Path(schematic_filepath)
+        self.test_dirpath = Path(test_dirpath)
         self._result_dirpath = None
 
     def netlist(self) -> Path:
