@@ -3,14 +3,14 @@ import re
 import copy
 
 from viper.simulators.SimResult import SimResult
-from viper.results.Dataset import Dataset
+from viper.results.TestDataset import TestDataset
 
 class NgspiceResultReader:
 
     @staticmethod
-    def read_result(sim_result: SimResult) -> Dataset:
-        self.read_raw_file(sim_result.raw_output_filepath)
-
+    def read_result(sim_result: SimResult) -> TestDataset:
+        raw_data = self.read_raw_file(sim_result.raw_output_filepath)
+        
     @classmethod
     def read_raw_file(cls, filepath: Path) -> dict:
         data = Path(filepath).read_text()
