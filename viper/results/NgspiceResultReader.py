@@ -2,12 +2,18 @@ from pathlib import Path
 import re
 import copy
 
+from viper.simulators.SimResult import SimResult
+from viper.results.Dataset import Dataset
 
 class NgspiceResultReader:
+
     @staticmethod
-    def read_raw_file(filepath: Path):
+    def read_result(sim_result: SimResult) -> Dataset:
+        self.read_raw_file(sim_result.raw_output_filepath)
+
+    @classmethod
+    def read_raw_file(cls, filepath: Path) -> dict:
         data = Path(filepath).read_text()
-        ret = {}
         pattern = (
                 r"^Title:\s*(?P<title>.*)\s*"
                 r"^Date:\s*(?P<date>\w.*?\w)\s*"
@@ -19,28 +25,9 @@ class NgspiceResultReader:
                 r"Values:(?P<values>.*)")
         data_parsed = re.search(pattern, data, re.MULTILINE | re.DOTALL)
 
-        # vars
-        vars_text = data_parsed.group('vars')
-        pattern = (r"\s*(?P<idx>\d+)\s+" r"(?P<name>\S+)\s+" r"(?P<type>.*)\s*")
-        m_vars = re.finditer(pattern, vars_text)
-        variables = {}
-        for i in m_vars:
-            variables[i.group("name")] = i.groupdict()
-            
-
-        values_text = data_parsed.group("values")
-        pattern = (r"^\s*(?P<idx>\d+)\s+" r"(?P<values>\S+(?:\n\s*\S+)*)$")
-        values_iter = re.finditer(pattern, values_text, re.MULTILINE)
-        values = {}
-        for point,value_groups in enumerate(values_iter):
-            value_data = value_groups.group("values").split()
-            for name,value in zip(variables.keys(),value_data):
-                if name not in values.keys():
-                    values[name] = []
-                values[name].append(float(value))
-
-
-
+        variables = cls._read_raw_variables(data_parsed.group('vars'))
+        values = cls._read_raw_ascii_values(data_parsed.group("values"))
+        
         return {
             "title": data_parsed.group("title"),
             "date": data_parsed.group("date"),
@@ -50,4 +37,23 @@ class NgspiceResultReader:
             "values": values,
         }
     
-    # def dict() -> Dict[]
+    @staticmethod
+    def _read_raw_variables(variables_section: str) -> dict:
+        pattern = (r"\s*(?P<idx>\d+)\s+" r"(?P<name>\S+)\s+" r"(?P<type>.*)\s*")
+        m_vars = re.finditer(pattern, variables_section)
+        variables = {}
+        for i in m_vars:
+            variables[i.group("name")] = i.groupdict()
+        return variables
+    
+    @staticmethod
+    def _read_raw_ascii_values(values_section: str, variables: dict) -> dict:
+        pattern = (r"^\s*(?P<idx>\d+)\s+" r"(?P<values>\S+(?:\n\s*\S+)*)$")
+        values_iter = re.finditer(pattern, values_section, re.MULTILINE)
+        values = {}
+        for point,value_groups in enumerate(values_iter):
+            value_data = value_groups.group("values").split()
+            for name,value in zip(variables.keys(),value_data):
+                if name not in values.keys():
+                    values[name] = []
+                values[name].append(float(value))
