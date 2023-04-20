@@ -36,10 +36,14 @@ class Config():
     @classmethod
     def config_path(cls) -> Path:
         if cls._CONFIG_PATH is None:
+            viper_toml_filepath = Path.cwd() / "viper.toml"
+            pyproject_toml_filepath = Path.cwd() / "pyproject.toml"
             if environ.get("VIPER_CONFIG_PATH") is not None:
                 cls._CONFIG_PATH = Path(environ["VIPER_CONFIG_PATH"])
-            else:
-                cls._CONFIG_PATH = Path(os.getcwd()) / "viper.toml"
+            elif viper_toml_filepath.exists():
+                cls._CONFIG_PATH = viper_toml_filepath
+            elif pyproject_toml_filepath.exists():
+                cls._CONFIG_PATH = pyproject_toml_filepath
         return cls._CONFIG_PATH
 
     @classmethod
@@ -52,6 +56,10 @@ class Config():
     def _read_config(cls) -> ViperConfig:
         config = toml.load(cls.config_path())
         config["VIPER_CONFIG_PATH"] = cls.config_path()
+        if "tools" in config.keys() \
+            and "viper" in config["tools"] \
+            and "config" in config["tools"]["viper"]:
+            config = config["tools"]["viper"]
         config = ViperConfig(**config)
         return config
 

@@ -1,5 +1,7 @@
 from typing import Optional
+from pathlib import Path
 import click
+from rich.table import Table
 from viper.console import console
 from viper.project.Project import Project
 from viper.project.ProjectBuilder import ProjectBuilder
@@ -10,15 +12,22 @@ def project():
     pass
 
 @project.command()
-@click.argument('name')
+@click.argument('name', required=False)
 def info(name: Optional[str] = None ):
-    console.print("Project")
+    """Display the project's configuration"""
+    if name is None:
+        name = Path.cwd().name
     project = Project(name)
-    print(project.name)
-    print(project.path)
-    print(project.config)
-    #config = project.config
-    #print(config.dict())
+    table = Table(title=f"{project.name} Project", show_header=False)
+    #table.add_column("Parameter")
+    #table.add_column("Value")
+    table.add_row("name", project.name)
+    table.add_row("path", str(project.path))
+    if project.config is not None and project.config.description is not None:
+        table.add_row("description", project.config.description)
+    if project.config is not None and "process" in project.config.keys():
+        table.add_row("config", project.config.process)
+    console.print(table)
 
 @click.argument('name')
 @project.command()

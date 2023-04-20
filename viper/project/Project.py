@@ -21,6 +21,15 @@ class Project():
 
     @property
     def config(self) -> ProjectConfig:
-        config_path = self.path / "project.toml"
+        config_path = self.path / "pyproject.toml"
         config = toml.load(config_path)
-        config = ProjectConfig(**config)
+        if "project" in config.keys():
+            project_config = config["project"]
+        else:
+            raise KeyError(
+                "\"Project\" table is not in the project's pyproject.toml file")
+        if "tool" in config.keys() and "viper" in config["tool"].keys() \
+                      and "project" in config["tool"]["viper"].keys():
+            project_config.extend(config["tool"]["viper"]["project"])
+
+        config = ProjectConfig(**project_config)
