@@ -18,7 +18,7 @@ def info(name: Optional[str] = None ):
     if name is None:
         name = Path.cwd().name
     project = Project(name)
-    table = Table(title=f"{project.name} Project", show_header=False)
+    table = Table(title=f"Current Project", show_header=False)
     #table.add_column("Parameter")
     #table.add_column("Value")
     table.add_row("name", project.name)

@@ -16,7 +16,7 @@ def open_project(project: str, dev: bool = False,
                   name: Optional[str] = None, prefix: str=False,
                   shell: Optional[str] = None, init: Optional[str] = None):
     """
-    Start project ("viper start" CLI command)
+    Open project ("viper open" CLI command)
 
     :param project: The name of the project to open
     :param dev: A flag for toggling the development mode

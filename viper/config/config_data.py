@@ -27,7 +27,7 @@ class ViperConfig(BaseSettings, extra=Extra.ignore):
     docs: Dict[str, str] = \
         Field(description="URLs to documentation sites",
               default=DEFAULT_DOCS)
-    simulation_dirpath: DirectoryPath = \
+    simulation_dirpath: Path = \
         Field(description=\
               f"Path to the directory for storing all simulation results",
               default = Path("/tmp/simulation"))
