@@ -13,6 +13,7 @@ from viper.project.cli import project
 from viper.project.open import open_project_cli
 from viper.config.cli import config_cli
 
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 def docs(ctx, param, value):
     if not value or ctx.resilient_parsing:
@@ -21,7 +22,7 @@ def docs(ctx, param, value):
     console.print(f"[link={url}]documentation[/link]")
     ctx.exit()
 
-@click.group()
+@click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option(viper.__version__, '-v', '--version', message="%(version)s")
 @click.option("--docs", is_flag=True, callback=docs,
               expose_value=False, is_eager=True,
