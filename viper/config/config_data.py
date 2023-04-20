@@ -6,7 +6,8 @@ from viper.typing import PathLike
 
 
 DEFAULT_DOCS = {
-    "viper": "https://www.cascode-labs.org/viper/"
+    "viper": "https://www.cascode-labs.org/viper/",
+    "viper-forge": "https://www.cascode-labs.org/viper-forge/",
 }
 
 
