@@ -8,16 +8,15 @@ dependencies:
   - rich=12.5
   - pydantic=1.8
   - toml=0.10
-  - pip=22.2
-  - pyinstaller=5.6
-  #- pip:
-  #  - PySide6
+  - pandas=2.0
   # Testing and CI
   - pytest=7.1
   - pylint=2.15
   - pytest-pylint=0.18
   - pre-commit=2.20
   # Build and packaging
+  - pip=22.2
+  - pyinstaller=5.6
   - flit=3.7
   - conda=22.9
   - mamba=0.26
@@ -27,6 +26,8 @@ dependencies:
   - mkdocs=1.3
   - mkdocs-click=0.6
   - mkdocs-material=8.5.2
+  - pip:
+    - markdown-mdantic==1.3.3
   # development
   - git
   - gh

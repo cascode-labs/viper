@@ -1,0 +1,3 @@
+# Viper environment configuration.  Run viper config --help for more info.
+[tool.viper]
+default_project_root = "/prj"

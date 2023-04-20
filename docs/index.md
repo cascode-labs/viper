@@ -10,9 +10,9 @@ It supports both open source tools and Cadence Virtuoso with the
 package.  It is also easily extended to add new tools or integrate with
 other tools. It manages projects and their shell environment.
 
-## Commands
+## CLI Commands
 
-* `viper open <project_name>` - Open a project in the project manager gui
+* `viper open <project_name>` - Open a project in a shell
 * `viper config` - Read the viper environment configuration
 * `viper project create <project_name>` - Create a new Viper project
 * `viper project info <project_name>` - Display a summary of the project
@@ -23,11 +23,6 @@ other tools. It manages projects and their shell environment.
 
 See the [CLI reference](reference/cli_reference.md) for more details
 
-## Project Manager
-
-![project manager gui](imgs/viper_project_manager_mockup.png)
-
-**Still under development**: See [Contributing](index.md#contributing) below.
 
 ## Viper Design Environment
 

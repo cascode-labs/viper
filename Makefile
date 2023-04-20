@@ -17,7 +17,7 @@ help:
 .PHONY: help clean \
 		build publish \
 		docs  \
-		install-dev
+		install-dev all
 
 install-dev:
 	mamba env create -f environment.yml
@@ -44,3 +44,6 @@ docs:
 install-conda-base:
 	wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh"
 	exec Mambaforge-Linux-x86_64.sh
+
+all: build
+	mkdocs build --theme material

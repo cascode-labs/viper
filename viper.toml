@@ -1,6 +1,0 @@
-# Viper environment configuration.  Run viper config --help for more info.
-default_project_root = "/prj"
-
-[docs]
-viper = "http://www.cascode-labs.org/viper/"
-viper-forge = "https://www.cascode-labs.org/viper-forge/"
