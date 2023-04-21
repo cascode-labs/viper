@@ -4,11 +4,22 @@ repo_url: https://github.com/cascode-labs/viper
 repo_name: cascode-labs/viper
 theme:
   name: material
-  logo: viper_logo-transparent.png
-  favicon: viper_logo-transparent.png
+  logo: logo/viper_logo-transparent.png
+  favicon: logo/viper_logo-transparent.png
   features:
     - navigation.tabs
     - navigation.instant
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 nav:
   - Overview: 
     - Viper: index.md
