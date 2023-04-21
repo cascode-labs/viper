@@ -36,7 +36,9 @@ build:
 
 publish:
 	flit publish && \
-	mkdocs gh-deploy --force --theme material -m "Release docs v{version}"
+	mkdocs gh-deploy --force --theme material \
+		-m "Release docs v{version}" \
+		-f mkdocs.yml
 
 docs:
 	mkdocs serve

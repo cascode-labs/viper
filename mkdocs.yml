@@ -4,8 +4,8 @@ repo_url: https://github.com/cascode-labs/viper
 repo_name: cascode-labs/viper
 theme:
   name: material
-  logo: logo/viper_logo-transparent.png
-  favicon: logo/viper_logo-transparent.png
+  logo: viper_logo-transparent.png
+  favicon: viper_logo-transparent.png
   features:
     - navigation.tabs
     - navigation.instant
