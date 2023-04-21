@@ -434,19 +434,11 @@
 
 
 <h1 id="configuration">Configuration</h1>
-<p>The viper environment configuration is declared in a "viper.toml".  This 
-configuration can then be accessed from the command line using the 
-"viper config" command .   <code>viper config</code> will display the full configuration 
-and providing the key(s) to be read will select a subset of it.</p>
-<p>See the <a href="../reference/viper_configuration/">configuration reference</a> for more details
-on the keys in the configuration.</p>
+<p>The viper environment configuration is declared as a part of a project's "pyproject.toml" or in a "viper.toml" file.  This configuration can then be accessed from the command line using the <code>viper config</code> command .   <code>viper config</code> will display the full configuration and providing the key(s) to be read will select a subset of it.</p>
+<p>See the <a href="../reference/viper_configuration/">configuration reference</a> for more details on the keys in the configuration.</p>
 <h2 id="example-config-file">Example Config File</h2>
-<p>Basic "viper.toml" file:</p>
-<pre><code class="language-toml">default_project_root = &quot;/prj&quot;
-
-[docs]
-viper = &quot;http://www.cascode-labs.org/viper/&quot;
-viper-forge = &quot;https://www.cascode-labs.org/viper-forge/&quot;
+<pre><code class="language-toml">[tool.viper]
+default_project_root = &quot;/prj&quot;
 </code></pre>
 
 

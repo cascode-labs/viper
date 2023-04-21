@@ -287,6 +287,39 @@
     Directory Structure
   </a>
   
+    <nav class="md-nav" aria-label="Directory Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-directory-tree" class="md-nav__link">
+    Example Directory tree
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-configuration" class="md-nav__link">
+    Project Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-config-file" class="md-nav__link">
+    Example Config File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -411,6 +444,39 @@
     Directory Structure
   </a>
   
+    <nav class="md-nav" aria-label="Directory Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-directory-tree" class="md-nav__link">
+    Example Directory tree
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-configuration" class="md-nav__link">
+    Project Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-config-file" class="md-nav__link">
+    Example Config File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -439,11 +505,73 @@ commonly for a specific chip tape-out or a set of standard IP.  They allow the
 configuration of a project work area to be declared in a <code>project.toml</code>
 configuration file.  Then some of this configuration is made available as
 environment variables.</p>
+<p>Advantage:</p>
+<ul>
+<li>multi-process: Each project can support multiple libraries with each library
+  defining its own process</li>
+<li>declarative configuration: the project configuration is defined in a
+  pyproject.toml or viper.toml file located in the root folder of the 
+  project repo.</li>
+</ul>
 <h2 id="directory-structure">Directory Structure</h2>
 <p>Each project is created in a folder named after the project in the project
-root directory.  This is set using the "default_project_root" setting.<br />
-Projects have a standard directory structure that allows multiple users to
-work on a project with their own work area.</p>
+root directory.  This is set using the "default_project_root" setting and 
+defaults to the parent directory of the project.  </p>
+<h3 id="example-directory-tree">Example Directory tree</h3>
+<p>An example directory structure for a "bandgaps" project:</p>
+<pre><code class="language-bash">bandgaps
+├── bandgap_sky130_01     # A library in the Skywater sky130 process
+│   ├── controller
+│   │   ├── **/*.css
+│   ├── views
+│   ├── model
+│   ├── index.js
+├── bandgap_mcu180_01    # A library in the GF MCU180 process
+│   ├── css
+│   │   ├── **/*.css
+│   ├── images
+│   ├── js
+│   ├── index.html
+├── pyproject.toml
+└── .gitignore
+</code></pre>
+<h2 id="project-configuration">Project Configuration</h2>
+<p>The project's configuration is defined in a "pyproject.toml" or "viper.toml" in
+the root directory of the repo.</p>
+<h3 id="example-config-file">Example Config File</h3>
+<p>This example is for the same bandgap project.</p>
+<pre><code class="language-toml">name = &quot;bandgaps&quot;
+version = &quot;0.1.0&quot;
+authors = [
+   {name=&quot;Curtis Mayberry&quot;, email=&quot;Curtisma3@gmail.com&quot;},
+   {name=&quot;Yulin Deng&quot;, email=&quot;&quot;},
+   {name=&quot;Thomas Pluck&quot;, email=&quot;&quot;},
+]
+readme = &quot;README.md&quot;
+license = {file=&quot;LICENSE&quot;}
+description = &quot;A bandgap circuit in the Skywater SKY130 process&quot;
+keywords = [&quot;hardware&quot;, &quot;analog&quot;]
+requires-python = &quot;&gt;=3.8&quot;
+classifiers = [
+    &quot;Topic :: System :: Hardware&quot;,
+    &quot;Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)&quot;,
+    &quot;License :: OSI Approved :: Apache Software License&quot;,
+    &quot;Operating System :: POSIX :: Linux&quot;,
+    &quot;Programming Language :: Python :: 3 :: Only&quot;,
+    &quot;Programming Language :: Python :: 3.8&quot;,
+    &quot;Programming Language :: Python :: 3.9&quot;,
+    &quot;Programming Language :: Python :: 3.10&quot;,
+]
+
+[project.urls]
+&quot;Home&quot; = &quot;https://github.com/cascode-labs/bandgapReferenceCircuit&quot;
+&quot;Documentation&quot; = &quot;https://github.com/cascode-labs/bandgapReferenceCircuit&quot;
+&quot;Source&quot; = &quot;https://github.com/cascode-labs/bandgapReferenceCircuit&quot;
+
+[tool.viper.process]
+foundry = &quot;Skywater&quot;
+process = &quot;SKY130&quot;
+</code></pre>
 
 
 

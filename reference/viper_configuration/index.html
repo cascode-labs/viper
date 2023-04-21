@@ -406,29 +406,36 @@
 <td>VIPER_CONFIG_PATH</td>
 <td>FilePath</td>
 <td>True</td>
-<td></td>
+<td>Path to the viper config file</td>
 <td></td>
 </tr>
 <tr>
 <td>conda</td>
 <td>Optional[Conda]</td>
 <td>False</td>
-<td></td>
+<td>Conda environment configuration</td>
 <td></td>
 </tr>
 <tr>
 <td>default_project_root</td>
-<td>DirectoryPath</td>
-<td>True</td>
-<td></td>
+<td>Optional[DirectoryPath]</td>
+<td>False</td>
+<td>Default directory to place new projects</td>
 <td></td>
 </tr>
 <tr>
 <td>docs</td>
 <td>Mapping[str, str]</td>
-<td>True</td>
-<td></td>
-<td></td>
+<td>False</td>
+<td>URLs to documentation sites</td>
+<td>{'viper': 'https://www.cascode-labs.org/viper/', 'viper-forge': 'https://www.cascode-labs.org/viper-forge/'}</td>
+</tr>
+<tr>
+<td>simulation_dirpath</td>
+<td>Path</td>
+<td>False</td>
+<td>Path to the directory for storing all simulation results</td>
+<td>/tmp/simulation</td>
 </tr>
 </tbody>
 </table>
