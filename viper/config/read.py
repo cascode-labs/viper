@@ -22,7 +22,7 @@ class Config():
         cls._CONFIG_PATH = path
 
     @classmethod
-    def get_config_path(cls) -> Path:
+    def get_config_path(cls) -> Optional[Path]:
         if cls._CONFIG_PATH is None:
             cls._read_config()
         return cls._CONFIG_PATH
@@ -34,7 +34,7 @@ class Config():
         cls._read_config()
 
     @classmethod
-    def config_path(cls) -> Path:
+    def config_path(cls) -> Optional[Path]:
         if cls._CONFIG_PATH is None:
             viper_toml_filepath = Path.cwd() / "viper.toml"
             pyproject_toml_filepath = Path.cwd() / "pyproject.toml"
