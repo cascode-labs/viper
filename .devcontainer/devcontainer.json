@@ -10,7 +10,7 @@
 	// 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	"postCreateCommand": "[ -f .devcontainer/environment.yml ] && mamba env create -f environment.yml || exit 0",
+	"postCreateCommand": "[ -f environment.yml ] && mamba env create -f environment.yml || exit 0",
 	"containerEnv": {
 		// Sets the display variable to use x-forwarding to enable graphical apps
 		//"DISPLAY": "host.docker.internal:0.0" // Windows OS

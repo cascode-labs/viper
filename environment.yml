@@ -26,8 +26,14 @@ dependencies:
   - mkdocs=1.3
   - mkdocs-click=0.6
   - mkdocs-material=8.5.2
+  # related
+  - ngspice=38
   - pip:
     - markdown-mdantic==1.3.3
+    - spyci==1.0.2
+    - hdl21==4.0.0
+    - hdl21schematicimporter==1.0.dev0
+
   # development
   - git
   - gh
