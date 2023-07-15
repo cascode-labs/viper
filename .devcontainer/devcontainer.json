@@ -1,56 +1,37 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/python-3-miniconda
 {
-	"name": "viper-dev",
-	"build": {
-		"context": "..",
-		"dockerfile": "Dockerfile"
+	"name": "viper-ic",
+	"image": "hpretl/iic-osic-tools",
+
+	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+	"features": {
+		"ghcr.io/rocker-org/devcontainer-features/miniforge:1": {}
+	 },
+
+	// 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	"postCreateCommand": "[ -f .devcontainer/environment.yml ] && mamba env create -f environment.yml || exit 0",
+	"containerEnv": {
+		// Sets the display variable to use x-forwarding to enable graphical apps
+		//"DISPLAY": "host.docker.internal:0.0" // Windows OS
+		//"DISPLAY": "docker.for.mac.host.internal:0" // MAC OS
 	},
-	"runArgs": ["--name=viper-dev"],
-	// Configure tool-specific properties.
+	// 👇 Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
-			// Set *default* container specific settings.json values on container create.
-			"settings": {
-				"python.defaultInterpreterPath": "/opt/conda/bin/python",
-				"python.linting.enabled": true,
-				"python.linting.pylintEnabled": true,
-				"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
-				"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-				"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
-				"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
-				"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
-				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
-				"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
-				"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-				"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
-			},
-
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance",
+				"donjayamanne.python-environment-manager",
+				"yzhang.markdown-all-in-one",
+				"DavidAnson.vscode-markdownlint",
 				"mhutchie.git-graph",
-				"GitHub.vscode-pull-request-github",
-				"cschleiden.vscode-github-actions",
-				"timonwong.shellcheck",
-				"hediet.vscode-drawio",
-				"bungcip.better-toml"
+				"cschleiden.vscode-github-actions"
 			]
 		}
 	},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "conda init; git config --global --add safe.directory /workspaces/viper; pip install --no-deps -e .; pre-commit install; conda config --set ssl_verify false; conda config --add channels conda-forge",
-
-	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
-	"features": {
-		//"git": "latest",
-		//"github-cli": "latest"
-	}
+	// 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root"
 }
