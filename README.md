@@ -33,7 +33,9 @@ Viper is an open integrated circuit design environment.
 - supports a cloud native, local, and on-premise compute
 - supports software-based circuit design flows in addition to traditional flows.
 - CLI interface
-- project management with both distributed and centralized architectures
+- project management 
+  - both distributed and centralized architectures
+  - single process and multiple process support
 
 It supports both open source tools and
 [Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html)
