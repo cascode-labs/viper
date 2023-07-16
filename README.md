@@ -29,9 +29,11 @@
 
 Viper is an open integrated circuit design environment.
 
-- supports free and proprietary design tools.
-- supports a cloud native, local, and on-premise compute
-- supports software-based circuit design flows in addition to traditional flows.
+- environment management 
+  - supports free and proprietary design tools.
+  - supports a cloud native, local, and on-premise compute
+- circuit testing
+  - supports software-based circuit design flows in addition to traditional flows.
 - CLI interface
 - project management 
   - both distributed and centralized architectures
