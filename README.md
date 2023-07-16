@@ -27,20 +27,17 @@
 
 ## Overview
 
-Viper is an open integrated circuit design environment.  It supports design
-workflows with both free and proprietary software tools.  It also natively
-supports software-based circuit design flows in addition to
-traditional flows.
+Viper is an open integrated circuit design environment.
+
+- supports free and proprietary design tools.
+- supports a cloud native, local, and on-premise compute
+- supports software-based circuit design flows in addition to traditional flows.
+- CLI interface
+- project management with both distributed and centralized architectures
 
 It supports both open source tools and
 [Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html)
 with the [Virtue](http://www.cascode-labs.org/virtue/) package.  
-
-## Project Manager GUI
-
-[![Project Manager GUI](docs/imgs/viper_project_manager_mockup.png)](https://github.com/cascode-labs/viper/issues/5)
-
-See [issue #5](https://github.com/cascode-labs/viper/issues/5)
 
 ## Environment Manager
 
