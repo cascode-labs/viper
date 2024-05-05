@@ -30,6 +30,20 @@ dependencies = [
     "toml >= 0.10, < 1",
 ]
 
+[project.optional-dependencies]
+dev = [
+  "pytest == 7.1",
+  "pylint == 2.15",
+  "pytest-pylint == 0.18",
+  "pre-commit == 2.20",
+  "pyinstaller == 5.6",
+  "flit == 3.7",
+  "mkdocs == 1.3",
+  "mkdocs-click == 0.6",
+  "mkdocs-material == 8.5.2",
+  "markdown-mdantic == 1.3.3"
+]
+
 [project.urls]
 Documentation = "http://www.cascode-labs.org/viper/"
 Source = "https://github.com/cascode-labs/viper"

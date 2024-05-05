@@ -6,6 +6,6 @@
         "GitHub.vscode-pull-request-github",
         "timonwong.shellcheck",
         "hediet.vscode-drawio",
-        "bungcip.better-toml"
+        "tamasfe.even-better-toml"
     ]
 }

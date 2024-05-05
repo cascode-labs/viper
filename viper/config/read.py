@@ -56,10 +56,10 @@ class Config():
     def _read_config(cls) -> ViperConfig:
         config = toml.load(cls.config_path())
         config["VIPER_CONFIG_PATH"] = cls.config_path()
-        if "tools" in config.keys() \
-            and "viper" in config["tools"] \
-            and "config" in config["tools"]["viper"]:
-            config = config["tools"]["viper"]
+        if "tool" in config.keys() \
+            and "viper" in config["tool"] \
+            and "config" in config["tool"]["viper"]:
+            config = config["tool"]["viper"]
         config = ViperConfig(**config)
         return config
 

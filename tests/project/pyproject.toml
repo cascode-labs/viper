@@ -27,8 +27,8 @@ classifiers = [
 "Documentation" = "https://github.com/cascode-labs/bandgapReferenceCircuit"
 "Source" = "https://github.com/cascode-labs/bandgapReferenceCircuit"
 
-[tools.viper]
+[tool.viper]
 process = "SKY130"
 
-[tools.viper.libraries]
+[tool.viper.libraries]
 bandgap_sky130_v1 = "bandgap_sky130_v1"

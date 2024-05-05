@@ -1,0 +1,10 @@
+version: '3'
+tasks:
+  default:
+    desc: List all tasks
+    cmds:
+      - task --list-all
+  docs:
+    desc: Serve docs under development
+    cmds:
+      - mkdocs serve
