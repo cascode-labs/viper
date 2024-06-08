@@ -26,9 +26,9 @@ class XschemSchematic:
         self._delete_previous_netlist_dir()
         self.netlist_filepath.parent.mkdir(775, parents = True)
         options = [
-            "-q","-x",
-            "-n", "-o", str(self.netlist_filepath.parent),
-            "-l", str(self.netlisting_log_path),
+            "--quit","--no_x",
+            "--netlist", "-o", str(self.netlist_filepath.parent),
+            "--log", str(self.netlisting_log_path),
             "--rcfile", str(self.xschemrc_path),
             ]
         command = ["xschem"]
