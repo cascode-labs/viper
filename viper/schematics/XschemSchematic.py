@@ -60,8 +60,8 @@ class XschemSchematic:
         
     @staticmethod
     def _update_top_level_subckt(netlist: str) -> str:
-        netlist.replace("**.subckt", ".subckt")
-        netlist.replace("**.ends", ".ends")
+        netlist = netlist.replace("**.subckt", ".subckt")
+        netlist = netlist.replace("**.ends", ".ends")
         return netlist
     
     def export_svg(path: PathLike, 
