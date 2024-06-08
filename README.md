@@ -31,7 +31,7 @@ Viper is an open integrated circuit design environment.
 
 - Simulation Environment:
   Easily simulate over a set of corner conditions
-- environment management 
+- Environment management 
   - supports free and proprietary design tools.
   - supports a cloud native, local, and on-premise compute
 - circuit testing
